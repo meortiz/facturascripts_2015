@@ -142,7 +142,7 @@ if( file_exists('tmp/'.FS_TMP_NAME.'config2.ini') )
 else
 {
    $GLOBALS['config2'] = array(
-       'zona_horaria' => 'Europe/Madrid',
+       'zona_horaria' => 'America/Bogota',
        'nf0' => 2,
        'nf0_art' => 2,
        'nf1' => '.',
@@ -160,7 +160,7 @@ else
        'presupuestos' => 'presupuestos',
        'provincia' => 'provincia',
        'apartado' => 'apartado',
-       'cifnif' => 'CIF/NIF',
+       'cifnif' => 'CC/NIT',
        'iva' => 'IVA',
        'irpf' => 'IRPF',
        'numero2' => 'número 2',

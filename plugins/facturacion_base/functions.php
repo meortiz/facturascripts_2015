@@ -24,7 +24,7 @@
  */
 function fs_tipos_id_fiscal()
 {
-   return array('C.C','NIT',FS_CIFNIF,'Pasaporte');
+   return array('Cedula Ciudadania','NIT','Cedula Extrangeria','Pasaporte',FS_CIFNIF);
 }
 
 /**
