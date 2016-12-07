@@ -1,0 +1,158 @@
+{include="header"}
+
+<link rel="stylesheet" href="plugins/automocion/view/css/tour.css" />
+
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 800 600">
+    <defs>
+        <clipPath id="bonnetMask">
+            <rect x="290" y="282.333" fill="#691BE2" width="239.833" height="74.914"/>
+        </clipPath>
+        <clipPath id="tyreMask">
+            <rect x="290" y="383.333" fill="#691BE2" width="239.833" height="74.914"/>
+        </clipPath>
+    </defs>
+    <ellipse id="shadow" fill="#000"  cx="410.779" cy="411.598" rx="142.983" ry="7.438"/>
+    <g id="wholeCar">
+        <ellipse id="shadowFollow" fill="#000"  cx="410.779" cy="411.598" rx="142.983" ry="7.438" opacity="0"/>
+        <g clip-path="url(#tyreMask)">
+            <path id="tyreL" fill="#000" d="M345.763,410.936h-29.098c-2.2,0-4-1.8-4-4v-40.935c0-2.2,1.8-4,4-4h29.098c2.2,0,4,1.8,4,4	v40.935C349.763,409.136,347.963,410.936,345.763,410.936z"/>
+            <path id="tyreR" fill="#000" d="M502.303,410.936h-29.098c-2.2,0-4-1.8-4-4v-40.935c0-2.2,1.8-4,4-4h29.098c2.2,0,4,1.8,4,4	v40.935C506.303,409.136,504.503,410.936,502.303,410.936z"/>
+        </g>
+        <g id="chassis">
+            <line id="bumper" fill="none" stroke="#B22222" stroke-width="26" stroke-linecap="round" stroke-miterlimit="10" x1="290" y1="370" x2="528" y2="370"/>
+            <g clip-path="url(#bonnetMask)">
+                <path id="bonnetEnd" fill="#F00" d="M290,361.167v-47.833c0-17.05,13.95-31,31-31h177.833c17.05,0,31,13.95,31,31v47.833"/>
+                <path id="bonnetStart" fill="#F00" d="M378,361.167v-47.833c0-17.05,13.95-31,31-31h1.833c17.05,0,31,13.95,31,31v47.833"/>
+            </g>
+            <polygon id="frame" fill="#000" fill-opacity="0.2" stroke="#F00" stroke-width="16" stroke-miterlimit="10" points="496.429,282.333 323.467,282.333 340.467,202.194 483.429,202.194 "/>
+            <circle id="headlightL" fill="#FFA500" cx="331.714" cy="326.858" r="17.5"/>
+            <circle id="headlightR" fill="#FFA500" cx="487.754" cy="326.858" r="17.5"/>
+            <circle id="headlightLc" fill="#FFF" cx="331.714" cy="326.858" r="12.5"/>
+            <circle id="headlightRc" fill="#FFF" cx="487.754" cy="326.858" r="12.5"/>
+            <rect id="mirrorR" x="514.21" y="262.76" width="28.59" height="20.16" rx="6" ry="6" fill="#F00"/>
+            <rect id="mirrorL" x="276.94" y="262.76" width="28.59" height="20.16" rx="6" ry="6" fill="#F00"/>
+        </g>
+    </g>
+</svg>
+
+<div id="cards" class="card">
+    <div class="products">
+        <div id="product_active" product-id="1" class="product active">
+            <div class="thumbnail"><img src="plugins/automocion/view/images/tour/Informacion.png"/></div>
+            <h1 class="title">Informaci&oacute;n</h1>
+            <p class="description">Informaci&oacute;n t&eacute;cnica para consultar r&aacute;pidamente en cualquier momento.<br/>Principalmente incluye información sobre pneum&aacute;ticos.</p>
+        </div>
+        <div product-id="2" class="product">
+            <div class="thumbnail"><img src="plugins/automocion/view/images/tour/Marcas.png"/></div>
+            <h1 class="title">Marcas</h1>
+            <p class="description">Las principales marcas de veh&iacute;culos ya est&aacute;n creadas por defecto.<br/>Para que necesites dedicar menos tiempo en tener el entorno de trabajo listo para empezar.</p>
+        </div>
+        <div product-id="3" class="product">
+            <div class="thumbnail"><img src="plugins/automocion/view/images/tour/Modelos.png"/></div>
+            <h1 class="title">Modelos</h1>
+            <p class="description">Fotos de los modelos de cada veh&iacute;culo, para que sea un entorno m&aacute;s visual e intuitivo.<br/>C&oacute;mo en las marcas, todos los modelos hasta 2015 ya est&aacute;n introducidos y relacionados.</p>
+        </div>
+        <div product-id="4" class="product">
+            <div class="thumbnail"><img src="plugins/automocion/view/images/tour/Vehiculos.png"/></div>
+            <h1 class="title">Veh&iacute;culos</h1>
+            <p class="description">Da de alta los veh&iacute;culos de tus clientes en pocos pasos.<br/>As&iacute; &eacute;s m&aacute;s sencillo encontrar cuando y en que veh&iacute;culo se ha realizado una intervenci&oacute;n.</p>
+        </div>
+        <div product-id="5" class="product">
+            <div class="thumbnail"><img src="plugins/automocion/view/images/tour/PresupuestoX.png"/></div>
+            <h1 class="title">Documento espec&iacute;fico</h1>
+            <p class="description">Haz el <span class="text-capitalize">{#FS_PRESUPUESTO#}/{#FS_PEDIDO#}/{if condition="in_array('servicios',$GLOBALS['plugins'])"}{#FS_SERVICIO#}{else}Servicio{/if}/{#FS_ALBARAN#}/{#FS_FACTURA#}</span> y pulsa en <strong>Guardar y ver</strong>.<br/>As&iacute; puedes relacionar el documento con facilidad con el veh&iacute;culo desde la pestaña Veh&iacute;culo.</p>
+        </div>
+        <div product-id="6" class="product">
+            <div class="thumbnail"><img src="plugins/automocion/view/images/tour/Inspecciones.png"/></div>
+            <h1 class="title">Inspecciones</h1>
+            <p class="description">Posibilidad de realizar inspecciones visuales de los veh&iacute;culos de m&aacute;s de 90 puntos diferentes.<br/> Si alguno no se revisa, este no aparece en la versi&oacute;n imprimible.</p>
+        </div>
+        <div product-id="7" class="product">
+            <div class="thumbnail"><img src="plugins/automocion/view/images/tour/InspeccionX.png"/></div>
+            <h1 class="title">Inspecci&oacute;n espec&iacute;fica</h1>
+            <p class="description">Posibilidad de imprimir las inspecciones visuales de los veh&iacute;culos para entregar al cliente.</p>
+        </div>
+        <div product-id="8" class="product">
+            <div class="thumbnail"><img src="plugins/automocion/view/images/tour/Clientes.png"/></div>
+            <h1 class="title">Cliente espec&iacute;fico</h1>
+            <p class="description">Los veh&iacute;culos e inspecciones se enlazan desde la p&aacute;gina del cliente.<br/>Para que puedas consultar en cualquier momento lo que necesites.</p>
+        </div>
+        <div product-id="9" class="product">
+            <div class="thumbnail"><img src="plugins/automocion/view/images/tour/VehiculoX.png"/></div>
+            <h1 class="title">Veh&iacute;culo espec&iacute;fico</h1>
+            <p class="description">Tambi&eacute;n podr&aacute;s ver los documentos donde se indique el veh&iacute;culo sobre el que se ha trabajado.<br/>Para que puedas filtrar documentos por veh&iacute;culo.</p>
+        </div>
+    </div>
+    <div class="footer">
+        <a id="prev" href="#" class="btn btn-sm btn-primary text-capitalize" disabled="disabled">Anterior</a>
+        <a id="next" href="#" class="btn btn-sm btn-primary text-capitalize">Siguiente</a>
+    </div>
+</div>
+
+<script type="text/javascript" src="plugins/automocion/view/js/tour.js"></script>
+<script src="plugins/automocion/view/js/TweenMax.min.js"></script>
+<script src="plugins/automocion/view/js/AnticipateEase.min.js"></script>
+
+<script>
+    $("svg").attr("width",  window.innerWidth);
+    $("svg").attr("height", window.innerHeight+(window.innerHeight*0.06));
+
+    var xmlns = "http://www.w3.org/2000/svg",
+            xlinkns = "http://www.w3.org/1999/xlink",
+            select = function (s) {
+                return document.querySelector(s);
+            },
+            selectAll = function (s) {
+                return document.querySelectorAll(s);
+            }
+
+    TweenMax.set('svg', {visibility: 'visible'})
+    TweenMax.set('#cards', {visibility: 'hidden'})
+    TweenMax.set('#product_active', {visibility: 'hidden'})
+    TweenMax.set('#bonnetStart', {y: 75})
+    TweenMax.set('#bonnetEnd', {y: 75})
+    TweenMax.set('#bumper', {drawSVG: '50% 50%', alpha: 0})
+    TweenMax.set('#shadow', {alpha: 0.2})
+    TweenMax.set('#wholeCar', {transformOrigin: '50% 50%', y: -30})
+    TweenMax.set('#frame', {transformOrigin: '50% 50%', scaleX: 0})
+    TweenMax.set(['#headlightL', '#headlightR'], {svgOrigin: '410 320', scale: 0})
+    TweenMax.set(['#headlightLc', '#headlightRc'], {svgOrigin: '410 320', scale: 0})
+    TweenMax.set(['#tyreL', '#tyreR'], {y: -30, transformOrigin: '50% 50%'})
+    TweenMax.set('#mirrorL', {transformOrigin: '100% 100%', scale: 0, rotation: 90, y: 20, x: 10})
+    TweenMax.set('#mirrorR', {transformOrigin: '0% 100%', scale: 0, rotation: -90, y: 20, x: -10})
+    
+    var tl = new TimelineMax({repeat: 0, repeatDelay: 0});
+
+    tl.set('#bumper', {alpha: 1})
+            .to('#bumper', 1, {drawSVG: '0% 100%', ease: Power1.easeInOut})
+            .from('#shadow', 1, {attr: {rx: 0, ry: '-=6'}, ease: Power1.easeInOut}, '-=1')
+            .to('#bonnetStart', 0.6, {y: 0, ease: Power2.easeInOut}, '-=0.9')
+            .to('#bonnetEnd', 0.6, {y: 0, ease: Quad.Expo}, '-=0.9')
+            .to('#frame', 1, {scaleX: 1.12, ease: Linear.easeOutStrong}, '-=0.5')
+            .to(['#headlightL', '#headlightR'], 1, {scale: 1, ease: Power2.easeInOut}, '-=1')
+            .to(['#headlightLc', '#headlightRc'], 1, {scale: 1, ease: Power2.easeInOut}, '-=1')
+            .to('#wholeCar', 1.2, {y: 0, ease: Anticipate.easeInOut}, '-=1')
+            .to(['#tyreL', '#tyreR'], 0.5, {y: 0, ease: Power2.easeInOut}, '-=1')
+            .to(['#tyreL', '#tyreR'], 0.2, {scaleX: 1.1, ease: Power2.easeOut}, '-=0.5')
+            .to('#chassis', 0.2, {y: 3, transformOrigin: '50% 50%', ease: Power1.easeIn}, '-=0.5')
+            .to('#chassis', 0.4, {y: 1}, '-=0.2')
+            .to(['#tyreL', '#tyreR'], 2, {scaleX: 1.5, ease: Elastic.easeOut.config(1, 0.8)}, '-=0.4')
+            .to(['#mirrorL', '#mirrorR'], 1, {scale: 1, y: 0, x: 0}, '-=2.5')
+            .to(['#mirrorL', '#mirrorR'], 4, {rotation: 0, ease: Elastic.easeOut.config(1, 0.2)}, '-=1.8')
+            .set('#shadow', {alpha: 0})
+            .set('#shadowFollow', {alpha: 0.2})
+            .to('#wholeCar', 8, {scale: 4, y: 1000, ease: Power1.easeIn})
+    tl.timeScale(2)
+
+    $("#cards").show().delay(7000).queue(function(n) {
+        $("svg").attr("width",  0);
+        $("svg").attr("height", 0);
+        $("svg").hide();
+        $(this).show(); n();
+        
+        TweenMax.set('#cards', {visibility: 'visible'})
+        TweenMax.set('#product_active', {visibility: 'visible'})
+    });
+</script>
+
+{include="footer"}

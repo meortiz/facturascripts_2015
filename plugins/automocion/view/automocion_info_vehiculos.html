@@ -1,0 +1,2245 @@
+{include="header"}
+
+<script type="text/javascript" src="plugins/automocion/view/js/equivalencias.js"></script>
+<script>
+   /* Funciones para el correcto funcionamiento de ScrollSpy */
+   $('body').scrollspy({
+      target: '#navbar'
+   });
+
+   $('body').on("load", function() {
+      $('body').scrollspy("refresh")
+   });
+
+   // Falta modificar esta para prescindir de la variable a
+   a(".bs-docs-container [href=#]").click(function(a) {
+      a.preventDefault()
+   });
+   // Falta añadir la función que controla el scroll hacia arriba si se llega desde un link del menu
+
+   /* Funciones para el correcto funcionamiento de ScrollSpy */
+
+   function printDiv(divID) {
+      /* Gracias a: http://sarwarhossain.com/2010/10/05/print-a-div-open-new-window-print-and-close-using-javascirpt/ */
+      var contents = document.getElementById(divID).innerHTML;
+      var codeHTML = '<!DOCTYPE html><html><head><title>Imprimir p&aacute;gina</title><link rel="stylesheet" href="view/css/bootstrap-yeti.min.css" /></head><body onLoad="self.print()">' + contents + '</body></html>';
+
+      var newWindowObject = window.open("", "Imprimir p&aacute;gina");
+      newWindowObject.document.writeln(codeHTML);
+      newWindowObject.document.close();
+      newWindowObject.focus();
+   }
+</script>
+
+<div class="container-fluid bs-docs-container">
+   <div class="row">
+      <!-- Contenido página-->
+      <div class="col-md-9" role="main">
+         <div class="bs-docs-section text-justify" id="section_neumaticos">
+            <div class="row">
+               <h1 id="neumaticos">
+                  <div class="col-xs-10">
+                     <span><a href="#neumaticos">Neum&aacute;ticos</a></span>
+                  </div>
+                  <div class="col-xs-2 text-right">
+                     <button class="btn btn-default hidden-print" onclick="javascript:printDiv('section_neumaticos')" autocomplete="off" title="Imprimir secci&oacute;n">
+                        <span class="glyphicon glyphicon-print"></span>
+                     </button>
+                  </div>
+               </h1>
+            </div>
+            <div class="bs-docs-section text-justify" id="section_ic">
+               <div class="row">
+                  <h2 id="ic">
+                     <div class="col-xs-10">
+                        <span><a href="#ic">&Iacute;ndice de carga (IC)</a></span>
+                     </div>
+                     <div class="col-xs-2 text-right">
+                        <button class="btn btn-default hidden-print" onclick="javascript:printDiv('section_ic')" autocomplete="off" title="Imprimir secci&oacute;n">
+                           <span class="glyphicon glyphicon-print"></span>
+                        </button>
+                     </div>
+                  </h2>
+               </div>
+               <p>El &iacute;ndice de carga se muestra en los dos flancos del neum&aacute;tico.</p>
+               <p>El &iacute;ndice de carga es una norma del sector que determina la carga de servicio m&aacute;xima del neum&aacute;tico de un veh&iacute;culo.</p>
+               <center>
+                  <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVc2hhT2ltaFdMQ1k" alt="Neum&aacute;tico" />
+               </center>
+               <table class="table table-responsive">
+                  <thead>
+                     <tr>
+                        <th>#</th>
+                        <th>0</th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>6</th>
+                        <th>7</th>
+                        <th>8</th>
+                        <th>9</th>
+                        <th>10</th>
+                        <th>11</th>
+                        <th>12</th>
+                        <th>13</th>
+                        <th>14</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr class="active">
+                        <td><b>Kg</b></td>
+                        <td>45</td>
+                        <td>46,2</td>
+                        <td>47,5</td>
+                        <td>48,7</td>
+                        <td>50</td>
+                        <td>51,5</td>
+                        <td>53</td>
+                        <td>54,5</td>
+                        <td>56</td>
+                        <td>58</td>
+                        <td>60</td>
+                        <td>61,5</td>
+                        <td>63</td>
+                        <td>65</td>
+                        <td>67</td>
+                     </tr>
+                  </tbody>
+               </table>
+               <table class="table table-responsive">
+                  <thead>
+                     <tr>
+                        <th>#</th>
+                        <th>15</th>
+                        <th>16</th>
+                        <th>17</th>
+                        <th>18</th>
+                        <th>19</th>
+                        <th>20</th>
+                        <th>21</th>
+                        <th>22</th>
+                        <th>23</th>
+                        <th>24</th>
+                        <th>25</th>
+                        <th>26</th>
+                        <th>27</th>
+                        <th>28</th>
+                        <th>29</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr class="active">
+                        <td><b>Kg</b></td>
+                        <td>69</td>
+                        <td>71</td>
+                        <td>73</td>
+                        <td>75</td>
+                        <td>77,5</td>
+                        <td>80</td>
+                        <td>82,5</td>
+                        <td>85</td>
+                        <td>87,5</td>
+                        <td>90</td>
+                        <td>92,5</td>
+                        <td>95</td>
+                        <td>97,5</td>
+                        <td>100</td>
+                        <td>103</td>
+                     </tr>
+                  </tbody>
+               </table>
+               <table class="table table-responsive">
+                  <thead>
+                     <tr>
+                        <th>#</th>
+                        <th>30</th>
+                        <th>31</th>
+                        <th>32</th>
+                        <th>33</th>
+                        <th>34</th>
+                        <th>35</th>
+                        <th>36</th>
+                        <th>37</th>
+                        <th>38</th>
+                        <th>39</th>
+                        <th>40</th>
+                        <th>41</th>
+                        <th>42</th>
+                        <th>43</th>
+                        <th>44</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr class="active">
+                        <td><b>Kg</b></td>
+                        <td>106</td>
+                        <td>109</td>
+                        <td>112</td>
+                        <td>115</td>
+                        <td>118</td>
+                        <td>121</td>
+                        <td>125</td>
+                        <td>128</td>
+                        <td>132</td>
+                        <td>136</td>
+                        <td>140</td>
+                        <td>145</td>
+                        <td>150</td>
+                        <td>155</td>
+                        <td>160</td>
+                     </tr>
+                  </tbody>
+               </table>
+               <table class="table table-responsive">
+                  <thead>
+                     <tr>
+                        <th>#</th>
+                        <th>45</th>
+                        <th>46</th>
+                        <th>47</th>
+                        <th>48</th>
+                        <th>49</th>
+                        <th>50</th>
+                        <th>51</th>
+                        <th>52</th>
+                        <th>53</th>
+                        <th>54</th>
+                        <th>55</th>
+                        <th>56</th>
+                        <th>57</th>
+                        <th>58</th>
+                        <th>59</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr class="active">
+                        <td><b>Kg</b></td>
+                        <td>165</td>
+                        <td>170</td>
+                        <td>175</td>
+                        <td>180</td>
+                        <td>185</td>
+                        <td>190</td>
+                        <td>195</td>
+                        <td>200</td>
+                        <td>206</td>
+                        <td>212</td>
+                        <td>218</td>
+                        <td>224</td>
+                        <td>230</td>
+                        <td>236</td>
+                        <td>243</td>
+                     </tr>
+                  </tbody>
+               </table>
+               <table class="table table-responsive">
+                  <thead>
+                     <tr>
+                        <th>#</th>
+                        <th>60</th>
+                        <th>61</th>
+                        <th>62</th>
+                        <th>63</th>
+                        <th>64</th>
+                        <th>65</th>
+                        <th>66</th>
+                        <th>67</th>
+                        <th>68</th>
+                        <th>69</th>
+                        <th>70</th>
+                        <th>71</th>
+                        <th>72</th>
+                        <th>73</th>
+                        <th>74</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr class="active">
+                        <td><b>Kg</b></td>
+                        <td>250</td>
+                        <td>257</td>
+                        <td>265</td>
+                        <td>272</td>
+                        <td>280</td>
+                        <td>290</td>
+                        <td>300</td>
+                        <td>307</td>
+                        <td>315</td>
+                        <td>325</td>
+                        <td>335</td>
+                        <td>345</td>
+                        <td>355</td>
+                        <td>365</td>
+                        <td>375</td>
+                     </tr>
+                  </tbody>
+               </table>
+               <table class="table table-responsive">
+                  <thead>
+                     <tr>
+                        <th>#</th>
+                        <th>75</th>
+                        <th>76</th>
+                        <th>77</th>
+                        <th>78</th>
+                        <th>79</th>
+                        <th>80</th>
+                        <th>81</th>
+                        <th>82</th>
+                        <th>83</th>
+                        <th>84</th>
+                        <th>85</th>
+                        <th>86</th>
+                        <th>87</th>
+                        <th>88</th>
+                        <th>89</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr class="active">
+                        <td><b>Kg</b></td>
+                        <td>387</td>
+                        <td>400</td>
+                        <td>412</td>
+                        <td>425</td>
+                        <td>437</td>
+                        <td>450</td>
+                        <td>462</td>
+                        <td>475</td>
+                        <td>487</td>
+                        <td>500</td>
+                        <td>515</td>
+                        <td>530</td>
+                        <td>545</td>
+                        <td>560</td>
+                        <td>580</td>
+                     </tr>
+                  </tbody>
+               </table>
+               <table class="table table-responsive">
+                  <thead>
+                     <tr>
+                        <th>#</th>
+                        <th>90</th>
+                        <th>91</th>
+                        <th>92</th>
+                        <th>93</th>
+                        <th>94</th>
+                        <th>95</th>
+                        <th>96</th>
+                        <th>97</th>
+                        <th>98</th>
+                        <th>99</th>
+                        <th>100</th>
+                        <th>101</th>
+                        <th>102</th>
+                        <th>103</th>
+                        <th>104</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr class="active">
+                        <td><b>Kg</b></td>
+                        <td>600</td>
+                        <td>615</td>
+                        <td>630</td>
+                        <td>650</td>
+                        <td>670</td>
+                        <td>690</td>
+                        <td>710</td>
+                        <td>730</td>
+                        <td>750</td>
+                        <td>775</td>
+                        <td>800</td>
+                        <td>825</td>
+                        <td>850</td>
+                        <td>875</td>
+                        <td>900</td>
+                     </tr>
+                  </tbody>
+               </table>
+               <table class="table table-responsive">
+                  <thead>
+                     <tr>
+                        <th>#</th>
+                        <th>105</th>
+                        <th>106</th>
+                        <th>107</th>
+                        <th>108</th>
+                        <th>109</th>
+                        <th>110</th>
+                        <th>111</th>
+                        <th>112</th>
+                        <th>113</th>
+                        <th>114</th>
+                        <th>115</th>
+                        <th>116</th>
+                        <th>117</th>
+                        <th>118</th>
+                        <th>119</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr class="active">
+                        <td><b>Kg</b></td>
+                        <td>925</td>
+                        <td>950</td>
+                        <td>975</td>
+                        <td>1000</td>
+                        <td>1030</td>
+                        <td>1060</td>
+                        <td>1090</td>
+                        <td>1120</td>
+                        <td>1150</td>
+                        <td>1180</td>
+                        <td>1215</td>
+                        <td>1250</td>
+                        <td>1285</td>
+                        <td>1320</td>
+                        <td>1360</td>
+                     </tr>
+                  </tbody>
+               </table>
+               <table class="table table-responsive">
+                  <thead>
+                     <tr>
+                        <th>#</th>
+                        <th>120</th>
+                        <th>121</th>
+                        <th>122</th>
+                        <th>123</th>
+                        <th>124</th>
+                        <th>125</th>
+                        <th>126</th>
+                        <th>127</th>
+                        <th>128</th>
+                        <th>129</th>
+                        <th>130</th>
+                        <th>131</th>
+                        <th>132</th>
+                        <th>133</th>
+                        <th>134</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr class="active">
+                        <td><b>Kg</b></td>
+                        <td>1400</td>
+                        <td>1450</td>
+                        <td>1500</td>
+                        <td>1550</td>
+                        <td>1600</td>
+                        <td>1650</td>
+                        <td>1700</td>
+                        <td>1750</td>
+                        <td>1800</td>
+                        <td>1850</td>
+                        <td>1900</td>
+                        <td>1950</td>
+                        <td>2000</td>
+                        <td>2060</td>
+                        <td>2120</td>
+                     </tr>
+                  </tbody>
+               </table>
+               <table class="table table-responsive">
+                  <thead>
+                     <tr>
+                        <th>#</th>
+                        <th>135</th>
+                        <th>136</th>
+                        <th>137</th>
+                        <th>138</th>
+                        <th>139</th>
+                        <th>140</th>
+                        <th>141</th>
+                        <th>142</th>
+                        <th>143</th>
+                        <th>144</th>
+                        <th>145</th>
+                        <th>146</th>
+                        <th>147</th>
+                        <th>148</th>
+                        <th>149</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr class="active">
+                        <td><b>Kg</b></td>
+                        <td>2180</td>
+                        <td>2240</td>
+                        <td>2300</td>
+                        <td>2360</td>
+                        <td>2430</td>
+                        <td>2500</td>
+                        <td>2575</td>
+                        <td>2650</td>
+                        <td>2725</td>
+                        <td>2800</td>
+                        <td>2900</td>
+                        <td>3000</td>
+                        <td>3075</td>
+                        <td>3150</td>
+                        <td>3250</td>
+                     </tr>
+                  </tbody>
+               </table>
+               <table class="table table-responsive">
+                  <thead>
+                     <tr>
+                        <th>#</th>
+                        <th>150</th>
+                        <th>151</th>
+                        <th>152</th>
+                        <th>153</th>
+                        <th>154</th>
+                        <th>155</th>
+                        <th>156</th>
+                        <th>157</th>
+                        <th>158</th>
+                        <th>159</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr class="active">
+                        <td><b>Kg</b></td>
+                        <td>3350</td>
+                        <td>3450</td>
+                        <td>3550</td>
+                        <td>3650</td>
+                        <td>3750</td>
+                        <td>3875</td>
+                        <td>4000</td>
+                        <td>4125</td>
+                        <td>4250</td>
+                        <td>4375</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="bs-docs-section text-justify" id="section_iv">
+               <div class="row">
+                  <h2 id="iv">
+                     <div class="col-xs-10">
+                        <span><a href="#iv">&Iacute;ndice de velocidad (IV)</a></span>
+                     </div>
+                     <div class="col-xs-2 text-right">
+                        <button class="btn btn-default hidden-print" onclick="javascript:printDiv('section_iv')" autocomplete="off" title="Imprimir secci&oacute;n">
+                           <span class="glyphicon glyphicon-print"></span>
+                        </button>
+                     </div>
+                  </h2>
+               </div>
+               <p>El &iacute;ndice de velocidad se muestra en los dos flancos del neum&aacute;tico. La calificación de velocidad indica la velocidad m&aacute;xima en uso de un neum&aacute;tico.</p>
+               <p>Los neum&aacute;ticos radiales sin marcas se permiten hasta una velocidad de 110Km/h. Los neum&aacute;ticos de capas sesgadas est&aacute;n limitados a 100Km/h. Los neum&aacute;ticos recauchutados pueden usarse hasta una velocidad m&aacute;xima
+                  de 110Km/h, a menos que indiquen lo contrario.
+               </p>
+               <p>Los neum&aacute;ticos para fines espec&iacute;ficos y aplicaciones industriales deben llevar identificadas en los flancos sus limitaciones de velocidad.</p>
+               <p>Es posible montar neum&aacute;ticos de invierno (M&S o M+S) con un &iacute;ndice de velocidad inferior al del veh&iacute;culo. En algunos pa&iacute;ses, es obligatorio colocar un adhesivo a la vista del conductor con la velocidad m&aacute;xima
+                  del neum&aacute;tico. Dicha velocidad no deber&aacute; superarse mientras se utilicen estos neum&aacute;ticos. Este sistema de clasificación se aplñica a todos los fabricantes de neum&aacute;ticos.</p>
+               <center>
+                  <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVc2hhT2ltaFdMQ1k" alt="Neum&aacute;tico" />
+               </center>
+               <table class="table table-responsive">
+                  <thead>
+                     <tr>
+                        <th>#</th>
+                        <th>A1</th>
+                        <th>A2</th>
+                        <th>A3</th>
+                        <th>A4</th>
+                        <th>A5</th>
+                        <th>A6</th>
+                        <th>A7</th>
+                        <th>A8</th>
+                        <th>B</th>
+                        <th>C</th>
+                        <th>D</th>
+                        <th>E</th>
+                        <th>F</th>
+                        <th>G</th>
+                        <th>J</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr class="active">
+                        <td><b>Km/h</b></td>
+                        <td>5</td>
+                        <td>10</td>
+                        <td>15</td>
+                        <td>20</td>
+                        <td>25</td>
+                        <td>30</td>
+                        <td>35</td>
+                        <td>40</td>
+                        <td>50</td>
+                        <td>60</td>
+                        <td>65</td>
+                        <td>70</td>
+                        <td>80</td>
+                        <td>90</td>
+                        <td>100</td>
+                     </tr>
+                  </tbody>
+               </table>
+
+               <table class="table table-responsive">
+                  <thead>
+                     <tr>
+                        <th>#</th>
+                        <th>K</th>
+                        <th>L</th>
+                        <th>M</th>
+                        <th>N</th>
+                        <th>P</th>
+                        <th>Q</th>
+                        <th>R</th>
+                        <th>S</th>
+                        <th>T</th>
+                        <th>H</th>
+                        <th>V</th>
+                        <th>W</th>
+                        <th>Y</th>
+                        <th>ZR</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr class="active">
+                        <td><b>Km/h</b></td>
+                        <td>110</td>
+                        <td>120</td>
+                        <td>130</td>
+                        <td>140</td>
+                        <td>150</td>
+                        <td>160</td>
+                        <td>170</td>
+                        <td>180</td>
+                        <td>190</td>
+                        <td>210</td>
+                        <td>240</td>
+                        <td>270</td>
+                        <td>300</td>
+                        <td>240+</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="bs-docs-section text-justify" id="section_equivalencias">
+               <div class="row">
+                  <h2 id="equivalencias">
+                     <div class="col-xs-10">
+                        <span><a href="#equivalencias">Equival&eacute;ncias de neum&aacute;ticos</a></span>
+                     </div>
+                     <div class="col-xs-2 text-right">
+                        <button class="btn btn-default hidden-print" onclick="javascript:printDiv('section_equivalencias')" autocomplete="off" title="Imprimir secci&oacute;n">
+                           <span class="glyphicon glyphicon-print"></span>
+                        </button>
+                     </div>
+                  </h2>
+               </div>
+               <p>Según la <a href="http://www.boe.es/boe/dias/2002/12/17/pdfs/A44033-44047.pdf" target="_blank">Orden 3191/2002 (Reforma n&uacute;mero 45) del BOE</a> que modifica el Real Decreto 736/1998, los neum&aacute;ticos equivalentes son aquellos
+                  que reúnen al mismo tiempo las siguientes condiciones:</p>
+               <ul>
+                  <li>&Iacute;ndice de capacidad de carga igual o superior al que marca la ficha de inspección t&eacute;cnica del veh&iacute;culo (Por ejemplo, si es 88, cambiarlo por 91).</li>
+                  <li>&Iacute;ndice de velocidad igual o superior al que marca la ficha de inspección t&eacute;cnica del veh&iacute;culo (Por ejemplo, si es H, cambiarlo por V). Sólo en neum&aacute;ticos de invierno o con marcaje M&S o M+S se permite un nivel
+                     inferior, no inferior a Q.</li>
+                  <li>Igual di&aacute;metro exterior de la dimensión debe ser igual, con una tolerancia de &plusmn;3% con respecto a la monta homologada (di&aacute;metro exterior de diseño E.T.R.T.O).</li>
+                  <li>En todos los casos el neum&aacute;tico no debe tener interferencias con otras partes del veh&iacute;culo, y el perfil de llanta de montaje debe ser el correspondiente al neum&aacute;tico.</li>
+               </ul>
+               <center>
+                  <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVc2hhT2ltaFdMQ1k" alt="Neum&aacute;tico" />
+               </center>
+               <form name="equivalencias" id="equivalencias" class="form" action="{$fsc->url()}#equivalencias" role="form" method="post">
+                  <div class="container-fluid">
+                     <div class="row">
+                        <div class="col-sm-12">
+                           <div class="form-group">
+                              <div class="row">
+                                 <div class="btn-group btn-group-justified" data-toggle="buttons">
+                                    <label class="btn btn-primary active">
+                                       <input type="radio" name="filtrado" id="todas" autocomplete="off" checked> Todas
+                                    </label>
+                                    <label class="btn btn-primary">
+                                       <input type="radio" name="filtrado" id="anchas" autocomplete="off" title="Imprimir secci&oacute;n"> M&aacute;s anchas
+                                    </label>
+                                    <label class="btn btn-primary">
+                                       <input type="radio" name="filtrado" id="estrechas" autocomplete="off" title="Imprimir secci&oacute;n"> M&aacute;s estrechas
+                                    </label>
+                                 </div>
+                              </div>
+                              <br>
+                              <div class="row">
+                                 <div class="col-sm-2 col-xs-4">
+                                    <input class="form-control input-sm text-center" type="text" name="ancho" value="205" data-toggle="tooltip" data-placement="bottom" title="Ancho" />
+                                 </div>
+                                 <div class="col-sm-1 col-xs-1 text-center">
+                                    <strong>/</strong>
+                                 </div>
+                                 <div class="col-sm-2 col-xs-3">
+                                    <input class="form-control input-sm text-center" type="text" name="perfil" value="55" data-toggle="tooltip" data-placement="bottom" title="Perfil" />
+                                 </div>
+                                 <div class="col-sm-1 col-xs-1 text-center">
+                                    <strong>R</strong>
+                                 </div>
+                                 <div class="col-sm-2 col-xs-3">
+                                    <input class="form-control input-sm text-center" type="text" name="diametro" value="16" data-toggle="tooltip" data-placement="bottom" title="Di&aacute;metro" />
+                                 </div>
+                                 <div class="col-xs-12 visible-xs">
+                                    &nbsp;
+                                 </div>
+                                 <div class="col-sm-4 col-xs-12">
+                                    <div class="row">
+                                       <div class="form-group">
+                                          <div class="col-xs-3 visible-xs">
+                                             &nbsp;
+                                          </div>
+                                          <div class="col-sm-6 col-xs-3 text-center">
+                                             <input class="form-control input-sm text-center" type="text" name="llanta" value="17" data-toggle="tooltip" data-placement="bottom" title="Di&aacute;metro nuevo, dejar en blanco para todos">
+                                          </div>
+                                          <div class="col-xs-3 visible-xs">
+                                             &nbsp;
+                                          </div>
+                                          <div class="col-sm-6 col-xs-3 text-center">
+                                             <a type="button" class="btn btn-primary" data-loading-text="Cargando..." data-complete-text="Completado!" onclick="$(this).button('loading');calcular();$(this).button('complete');$(this).button('reset');" value="Calcular" autocomplete="off" title="Imprimir secci&oacute;n">
+                                                <span class="glyphicon glyphicon-filter"></span>
+                                                <span class="hidden-xs">&nbsp; Calcular</span>
+                                             </a>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-sm-12">
+                           <div class="container-fluid" id="resultado"></div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-sm-12">
+                           <div class="container-fluid" id="equivalentes"></div>
+                        </div>
+                     </div>
+                  </div>
+               </form>
+            </div>
+            <div class="bs-docs-section text-justify" id="section_alineacion">
+               <div class="row">
+                  <h2 id="alineacion">
+                     <div class="col-xs-10">
+                        <span><a href="#alineacion">Alineaci&oacute;n</a></span>
+                     </div>
+                     <div class="col-xs-2 text-right">
+                        <button class="btn btn-default hidden-print" onclick="javascript:printDiv('section_alineacion')" autocomplete="off" title="Imprimir secci&oacute;n">
+                           <span class="glyphicon glyphicon-print"></span>
+                        </button>
+                     </div>
+                  </h2>
+               </div>
+               <p>Las cotas de alineación pueden verse de forma orientativa en la siguiente imagen:</p>
+               <h3>Vista tipo chassis</h3>
+               <center>
+                  <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVdlRJZ1lPcWV1UUE" alt="Vista tipo chassis" />
+               </center>
+               <p>Y la misma información de forma individual a continuación:</p>
+               <!-- Caídas -->
+               <div class="row" id="caida_0">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#caida_0">
+                           <img class="thumbnail img-responsive" alt="Ca&iacute;da a 0º" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVUEw4V3RIa3dISTQ" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Ca&iacute;da a 0º</h4>
+                     <p>Conceptualmente, se trata de la posici&oacute;n &oacute;ptima para un desgaste correcto.</p>
+                     <p>Normalmente es un valor entre 0 y -1º para ganar en estabilidad, lo que repercute en que siempre haya un poco m&aacute;s de desgaste interior, a cambio de ganar estabilidad.</p>
+                  </div>
+               </div>
+               <div class="row" id="caida_negativa">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#caida_negativa">
+                           <img class="thumbnail img-responsive" alt="Ca&iacute;da negativa" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVUEw4V3RIa3dISTQ" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Ca&iacute;da negativa</h4>
+                     <p>Ocasiona mayor desgaste en el hombro interior del neum&aacute;tico.</p>
+                     <p>Actualmente, la mayor&iacute;a de fabricantes es la posici&oacute;n que utilizan para ganar en estabilidad.</p>
+                  </div>
+               </div>
+               <div class="row" id="caida_positiva">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#caida_positiva">
+                           <img class="thumbnail img-responsive" alt="Ca&iacute;da negativa" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVUEw4V3RIa3dISTQ" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Ca&iacute;da negativa</h4>
+                     <p>Ocasiona mayor desgaste en el hombro interior del neum&aacute;tico.</p>
+                     <p>Actualmente, la mayor&iacute;a de fabricantes es la posici&oacute;n que utilizan para ganar en estabilidad.</p>
+                  </div>
+               </div>
+               <div class="row" id="caida_positiva">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#caida_positiva">
+                           <img class="thumbnail img-responsive" alt="Ca&iacute;da positiva" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVbXctcHI1U01Qem8" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Ca&iacute;da positiva</h4>
+                     <p>Ocasiona mayor desgaste en el hombro exterior del neum&aacute;tico.</p>
+                     <p>Actualmente, la mayor&iacute;a de fabricantes para veh&iacute;culos en los que se va a cargar es la posici&oacute;n que utilizan para compensar el cambio de altura y posici&oacute;n de la ca&iacute;da al introducir la carga.</p>
+                  </div>
+               </div>
+               <!-- Convergencias -->
+               <div class="row" id="convergencia_0">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#convergencia_0">
+                           <img class="thumbnail img-responsive" alt="Convergencia a 0º" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVUlFVdHA2YkRNM0U" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Convergencia a 0º</h4>
+                     <p>Conceptualmente, se trata de la posición &oacute;ptima para un desgaste correcto.</p>
+                     <p>Normalmente es un valor cercano a 0º, pero dicho valor depende de cada fabricante y modelo de veh&iacute;culo.</p>
+                  </div>
+               </div>
+               <div class="row" id="convergencia_negativa">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#convergencia_negativa">
+                           <img class="thumbnail img-responsive" alt="Convergencia negativa" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVOFlHRER2S2FRbTg" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Convergencia negativa o divergencia</h4>
+                     <p>Los neum&aacute;ticos tienen la parte frontal m&aacute;s alejada que la parte trasera, lo que origina desgaste en el hombre interior.</p>
+                  </div>
+               </div>
+               <div class="row" id="convergencia_positiva">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#convergencia_positiva">
+                           <img class="thumbnail img-responsive" alt="Convergencia positiva" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVVmpwNFI0VGtCaVE" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Convergencia positiva</h4>
+                     <p>Los neum&aacute;ticos tienen la parte frontal m&aacute;s cerca que la parte trasera, lo que origina desgaste en el hombre exterior.</p>
+                  </div>
+               </div>
+               <!-- Avances -->
+               <div class="row" id="avance_0">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#avance_0">
+                           <img class="thumbnail img-responsive" alt="Avance a 0º" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVMHUyYW9PakFES1k" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Avance a 0º</h4>
+                     <p>Conceptualmente, se trata de la posici&oacute;n &oacute;ptima.</p>
+                     <p>Un avance en posición inadecuada puede provocar desplazamiento lateral del veh&iacute;culo.</p>
+                  </div>
+               </div>
+               <div class="row" id="avance_negativo">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#avance_negativo">
+                           <img class="thumbnail img-responsive" alt="Avance negativo" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVREJIY1VsdXRjd3M" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Avance negativo</h4>
+                     <p>La posici&oacute;n del eje se encuentra desplazado hacia atr&aacute;s.</p>
+                     <p>Esto causa un desplazamiento lateral hacia el lado con el avance negativo, debido a que es similar a que el eje se encuentre atrasado de ese lado del veh&iacute;culo.</p>
+                  </div>
+               </div>
+               <div class="row" id="avance_positivo">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#avance_positivo">
+                           <img class="thumbnail img-responsive" alt="Avance positivo" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVdG52cVE4cm1EYmM" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Avance positivo</h4>
+                     <p>La posici&oacute;n del eje se encuentra desplazado hacia adelante.</p>
+                     <p>Esto causa un desplazamiento lateral hacia el lado opuesto con el avance positivo, debido a que es similar a que el eje se encuentre avanzado de ese lado del veh&iacute;culo.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="bs-docs-section text-justify" id="section_desgastes">
+               <div class="row">
+                  <h2 id="desgastes">
+                     <div class="col-xs-10">
+                        <span><a href="#desgastes">Tipos de desgaste de neum&aacute;ticos</a></span>
+                     </div>
+                     <div class="col-xs-2 text-right">
+                        <button class="btn btn-default hidden-print" onclick="javascript:printDiv('section_desgastes')" autocomplete="off" title="Imprimir secci&oacute;n">
+                           <span class="glyphicon glyphicon-print"></span>
+                        </button>
+                     </div>
+                  </h2>
+               </div>
+               <p>Los gr&aacute;ficos anteriores ayudan a compronder mejor porque debido a esas variaciones ocurren los siguientes tipos de desgastes:</p>
+               <div class="row" id="desgaste_correcto">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#desgaste_correcto">
+                           <img class="thumbnail img-responsive" alt="Desgaste correcto" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVRThja1NUU1ZoRlk" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-6 text-justify">
+                     <h4>Desgaste correcto</h4>
+                     <p>Cuando el desgaste es correcto, todos los indicadores de desgaste se ven al mismo nivel.</p>
+                  </div>
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#desgaste_correcto">
+                           <img class="thumbnail img-responsive" alt="Desgaste correcto" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVbFdYRVZObEpOd0k" />
+                        </a>
+                     </center>
+                  </div>
+               </div>
+               <div class="row" id="desgaste_falta_presion">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#desgaste_falta_presion">
+                           <img class="thumbnail img-responsive" alt="Desgaste por falta de presi&oacute;n" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVbkhScndSRVQxY0k" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-6 text-justify">
+                     <h4>Desgaste por falta de presi&oacute;n</h4>
+                     <p>Cuando hay falta de presi&oacute;n los hombros se desgastan de forma excesiva respecto al resto.</p>
+                  </div>
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#desgaste_falta_presion">
+                           <img class="thumbnail img-responsive" alt="Desgaste por falta de presi&oacute;n" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVSkhVOHRINEJlb2s" />
+                        </a>
+                     </center>
+                  </div>
+               </div>
+               <div class="row" id="desgaste_exceso_presion">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#desgaste_exceso_presion">
+                           <img class="thumbnail img-responsive" alt="Desgaste por exceso de presi&oacute;n" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVTGFUaVpLRkNycjQ" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-6 text-justify">
+                     <h4>Desgaste por exceso de presi&oacute;n</h4>
+                     <p>Cuando hay exceso de presi&oacute;n el centro se desgasta de forma excesiva respecto al resto.</p>
+                  </div>
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#desgaste_exceso_presion">
+                           <img class="thumbnail img-responsive" alt="Desgaste por exceso de presi&oacute;n" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVaFQ0dzZoS0pZbUE" />
+                        </a>
+                     </center>
+                  </div>
+               </div>
+               <div class="row" id="desgaste_caida">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#desgaste_caida">
+                           <img class="thumbnail img-responsive" alt="Desgaste por ca&iacute;da" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVVHNQWmFSRGhscVE" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-6 text-justify">
+                     <h4>Desgaste por ca&iacute;da</h4>
+                     <p>Cuando una ca&iacute;da est&aacute; fuera de su lugar, provoca un desgaste pronunciado de un lateral hacia otro.</p>
+                  </div>
+               </div>
+               <div class="row" id="desgaste_convergencia">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#desgaste_convergencia">
+                           <img class="thumbnail img-responsive" alt="Desgaste por ca&iacute;da" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVOWl0b3NaOXljWms" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-6 text-justify">
+                     <h4>Desgaste por convergencia</h4>
+                     <p>Cuando una convergencia est&aacute; fuera de su lugar, provoca un desgaste pronunciado en un lateral.</p>
+                  </div>
+               </div>
+               <div class="row" id="desgaste_variado">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#desgaste_variado">
+                           <img class="thumbnail img-responsive" alt="Desgaste variado" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVLUhXZFJfLWYyRm8" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-6 text-justify">
+                     <h4>Desgaste por varias causas</h4>
+                     <p>Dependiendo del tipo de desgaste, la causa ser&aacute; por razones diferentes.</p>
+                     <ul>
+                        <li>Taqueado interior, poco peso en el eje.</li>
+                        <li>Placas de desgaste de forma diagonal, amortiguaci&oacute;n en mal estado.</li>
+                        <li>Entre otros.</li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="bs-docs-section text-justify" id="section_iluminacion">
+            <div class="row">
+               <h1 id="iluminacion">
+                  <div class="col-xs-10">
+                     <span><a href="#iluminacion">Iluminación</a></span>
+                  </div>
+                  <div class="col-xs-2 text-right">
+                     <button class="btn btn-default hidden-print" onclick="javascript:printDiv('section_iluminacion')" autocomplete="off" title="Imprimir secci&oacute;n">
+                        <span class="glyphicon glyphicon-print"></span>
+                     </button>
+                  </div>
+               </h1>
+            </div>
+            <h3 id="indicadores_tablero"><span><a href="#indicadores_tablero">Indicadores tablero</a></span></h3>
+               <div class="row" id="falla_direccion_asistida_limitada">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#falla_direccion_asistida_limitada">
+                           <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVbm11cVdmODhqRXM" alt="Fallo: dirección asistida limitada" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Fallo: dirección asistida limitada</h4>
+                  </div>
+               </div>
+               <div class="row" id="luces_intermitente_izquierda">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#luces_intermitente_izquierda">
+                           <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVQk9xOWpqNTNfWUk" alt="Aviso: Luces intermitente izquierda" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Aviso: Luces intermitente izquierda</h4>
+                  </div>
+               </div>
+               <div class="row" id="luces_intermitente_derecha">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#luces_intermitente_derecha">
+                           <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVS3lmSGtsd0puRDg" alt="Aviso: Luces intermente derecha" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Aviso: Luces intermitente derecha</h4>
+                  </div>
+               </div>
+               <div class="row" id="aviso_fallo_abs">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#aviso_fallo_abs">
+                           <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVekR6aEpIenBuU00" alt="Fallo: ABS limitado" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Fallo: ABS limitado</h4>
+                  </div>
+               </div>
+               <div class="row" id="aviso_carburante_bajo">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#aviso_carburante_bajo">
+                           <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVd21uODBmbTVfYlE" alt="Aviso: Carburante bajo" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Aviso: Carburante bajo</h4>
+                  </div>
+               </div>
+               <div class="row" id="aviso_presion_inflado">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#aviso_presion_inflado">
+                           <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVbm13ZXhCb21vMUE" alt="Aviso: Presi&oacute;n inflado inadecuado" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Aviso: Presi&oacute;n inflado inadecuado</h4>
+                  </div>
+               </div>
+               <div class="row" id="luces_diurna">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#luces_diurna">
+                           <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVSXRBaWZEYTlFUWc" alt="Aviso: Luces diurna" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Aviso: Luces diurna</h4>
+                  </div>
+               </div>
+               <div class="row" id="aviso_puerta_abierta">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#aviso_puerta_abierta">
+                           <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVRWp2NFJXbWg5Q2s" alt="Aviso: Puerta abierta" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Aviso: Puerta abierta</h4>
+                  </div>
+               </div>
+               <div class="row" id="fallo_pretensor_airbag">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#fallo_pretensor_airbag">
+                           <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVNUgyQUJiQ1ZieDg" alt="Fallo: Pretensor airbag" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Fallo: Pretensor airbag</h4>
+                  </div>
+               </div>
+               <div class="row" id="falla_carga_bateria">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#falla_carga_bateria">
+                           <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVNU5teGR4Sk1qMEk" alt="Fallo: Carga bater&iacute;a inadecuada" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Fallo: Carga bater&iacute;a inadecuada</h4>
+                  </div>
+               </div>
+               <div class="row" id="avisa_falla_cinturon">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#avisa_falla_cinturon">
+                           <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVMXctNHEweFdFbzA" alt="Aviso: Falla cintur&oacute;n" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Aviso: Falla cintur&oacute;n</h4>
+                  </div>
+               </div>
+               <div class="row" id="aviso_maletero_abierta">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#aviso_maletero_abierta">
+                           <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVbURKRGx2UXNaamM" alt="Aviso: Maletero abierto" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Aviso: Maletero abierto</h4>
+                  </div>
+               </div>
+               <div class="row" id="aviso_precalentamiento_activo">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#aviso_precalentamiento_activo">
+                           <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVbnFFSFNsbjFYUkU" alt="Aviso: Precalentamiento activo" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Aviso: Precalentamiento activo</h4>
+                  </div>
+               </div>
+               <div class="row" id="aviso_fijo_falla_esc_asr">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#aviso_fijo_falla_esc_asr">
+                           <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVaGRTcndmMGpreG8" alt="Aviso fijo: Falla ESC/ASR" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Aviso fijo: Falla ESC/ASR</h4>
+                  </div>
+               </div>
+               <div class="row" id="aviso_falta_limpiacristales">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#aviso_falta_limpiacristales">
+                           <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVY3kwOEtQT3I4aUk" alt="Aviso: Falta limpiacristales" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Aviso: Falta limpiacristales</h4>
+                  </div>
+               </div>
+               <div class="row" id="falla_lampara">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#falla_lampara">
+                            <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVUmJQa28xbEV5VzQ" alt="Fallo: l&aacute;mpara no funciona" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Fallo: L&aacute;mpara no funciona</h4>
+                  </div>
+               </div>
+               <div class="row" id="luces_largas_encendidas">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#luces_largas_encendidas">
+                           <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVUk1ITDBfX01HMW8" alt="Aviso: Luces largas encendidas" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Aviso: Luces largas encendidas</h4>
+                  </div>
+               </div>
+               <div class="row" id="aviso_parpadea_actua_esc_asr">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#aviso_parpadea_actua_esc_asr">
+                           <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVRnNDa2NCQXlzcnM" alt="Aviso parpadea: Actua ESC/ASR" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Aviso parpadea: Actua ESC/ASR</h4>
+                  </div>
+               </div>
+               <div class="row" id="luz_mil">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#luz_mil">
+                           <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVOFdLZUlUN3RTWG8" alt="Fallo: Detectado fallo, luz MIL (Malfunction Indicator Light) encendida" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Fallo: Detectado fallo, luz MIL (Malfunction Indicator Light) encendida</h4>
+                  </div>
+               </div>
+               <div class="row" id="aviso_freno_puesto_falta_liquido_freno">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#aviso_freno_puesto_falta_liquido_freno">
+                            <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVMjkyUDg5RUNnQmc" alt="Aviso: Freno puesto o falta l&iacute;quido freno" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Aviso: freno puesto o falta l&iacute;quido freno</h4>
+                  </div>
+               </div>
+               <div class="row" id="aviso_insuficiente_aceite">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#aviso_insuficiente_aceite">
+                           <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVM0pDczliQlRza1E" alt="Aviso: Aceite insuficiente " />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Aviso: Aceite insuficiente </h4>
+                  </div>
+               </div>
+               <div class="row" id="aviso_regulador_velocidad_activo">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#aviso_regulador_velocidad_activo">
+                           <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVeGVObW5fcTkwLW8" alt="Aviso: Regulador velocidad activo" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Aviso: Regulador velocidad activo</h4>
+                  </div>
+               </div>
+               <div class="row" id="aviso_pastillas_freno">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#aviso_pastillas_freno">
+                           <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVa0dZUTdsUGlXc0E" alt="Aviso: Pastillas de freno gastadas" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Aviso: Pastillas de freno gastadas</h4>
+                  </div>
+               </div>
+               <div class="row" id="falla_presion_insuficiente">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#falla_presion_insuficiente">
+                           <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVX0hpZzZxSnVwUHM" alt="Fallo: Presi&oacute;n de aceite insuficiente" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Fallo: Presi&oacute;n de aceite insuficiente</h4>
+                  </div>
+               </div>
+               <div class="row" id="aviso_pisar_freno">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#aviso_pisar_freno">
+                           <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVWXJ1N2lyTGZNcHc" alt="Aviso: Pisar freno" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Aviso: Pisar freno</h4>
+                  </div>
+               </div>
+               <div class="row" id="falla_direccion_asistida">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#falla_direccion_asistida">
+                           <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVRms0dzRfclZQZlE" alt="Fallo: Direcci&oacute;n asistida limitada" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Fallo: Direcci&oacute;n asistida limitada</h4>
+                  </div>
+               </div>
+               <div class="row" id="falla_inyeccion_encendido">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#falla_inyeccion_encendido">
+                           <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVMFhKVWFqN25Gb3M" alt="Fallo: Inyecci&oacute;n encendido o EPC (Electronic Power Control) inadecuada" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Fallo: Inyecci&oacute;n encendido o EPC (Electronic Power Control) inadecuada</h4>
+                  </div>
+               </div>
+            <h3 id="tipos_lamparas"><span><a href="#tipos_lamparas">Tipos de l&aacute;mparas</a></span></h3>
+                <h4 id="lamparas_descarga"><span><a href="#lamparas_descarga">L&aacute;mparas de descarga</a></span></h4>
+                Proximanente
+                <h4 id="lamparas_halogenas"><span><a href="#lamparas_halogenas">L&aacute;mparas hal&oacute;genas</a></span></h4>
+                Proximanente
+                <h4 id="lamparas_senalizacion"><span><a href="#lamparas_senalizacion">L&aacute;mparas de señalizaci&oacute;n</a></span></h4>
+                Proximanente
+         </div>
+         <div class="bs-docs-section text-justify" id="section_enganche">
+            <div class="row">
+               <h1 id="enganche_remolque_caravana">
+                  <div class="col-xs-10">
+                     <span><a href="#enganche_remolque_caravana">Esquema montaje remolque/caravana</a></span>
+                  </div>
+                  <div class="col-xs-2 text-right">
+                     <button class="btn btn-default hidden-print" onclick="javascript:printDiv('section_enganche')" autocomplete="off" title="Imprimir secci&oacute;n">
+                        <span class="glyphicon glyphicon-print"></span>
+                     </button>
+                  </div>
+               </h1>
+            </div>
+            <h3>Conector macho</h3>
+            <center>
+               <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVYXVCOFdsS3JWaGs" alt="Conector macho" />
+            </center>
+            <h3>Conector hembra</h3>
+            <center>
+               <img class="thumbnail img-responsive" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVNHdUczZ3Z2FKV3c" alt="Conector hembra" />
+            </center>
+         </div>
+         <div class="bs-docs-section text-justify" id="section_matriculaciones">
+            <div class="row">
+               <h1 id="fechas_matriculaciones">
+                  <div class="col-xs-10">
+                     <span><a href="#fechas_matriculaciones">Fechas aproximadas de matriculaci&oacute;n</a></span>
+                  </div>
+                  <div class="col-xs-2 text-right">
+                     <button class="btn btn-default hidden-print" onclick="javascript:printDiv('section_matriculaciones')" autocomplete="off" title="Imprimir secci&oacute;n">
+                        <span class="glyphicon glyphicon-print"></span>
+                     </button>
+                  </div>
+               </h1>
+            </div>
+            <p>Por el momento puede consultarse en el siguiente enlace externo de <a href="http://www.dieselogasolina.com/fecha-de-matriculacion-de-vehiculos-por-matricula.html" target="_blank">Fecha de matriculación de veh&iacute;culos por matr&iacute;cula</a>.</p>
+         </div>
+         <div class="bs-docs-section text-justify" id="section_bujias">
+            <div class="row">
+               <h1 id="bujias">
+                  <div class="col-xs-10">
+                     <span><a href="#bujias">Estado de buj&iacute;as</a></span>
+                  </div>
+                  <div class="col-xs-2 text-right">
+                     <button class="btn btn-default hidden-print" onclick="javascript:printDiv('section_bujias')" autocomplete="off" title="Imprimir secci&oacute;n">
+                        <span class="glyphicon glyphicon-print"></span>
+                     </button>
+                  </div>
+               </h1>
+            </div>
+            <div class="bs-docs-section text-justify" id="section_bujias_motocicletas">
+               <div class="row">
+                  <h2 id="bujias_motocicletas">
+                     <div class="col-xs-10">
+                        <span><a href="#bujias_motocicletas">Estado de buj&iacute;as en motocicletas</a></span>
+                     </div>
+                     <div class="col-xs-2 text-right">
+                        <button class="btn btn-default hidden-print" onclick="javascript:printDiv('section_bujias_motocicletas')" autocomplete="off" title="Imprimir secci&oacute;n">
+                           <span class="glyphicon glyphicon-print"></span>
+                        </button>
+                     </div>
+                  </h2>
+               </div>
+               <p>Las buj&iacute;as forman parte de los componentes vitales de un veh&iacute;culo con motor de gasolina, y determinan, de forma decisiva, la potencia &oacute;ptima y el funcionamiento seguro del motor. Esto se mantiene durante toda su vida
+                  &uacute;til.</p>
+               <div class="row" id="bujiam01">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam01">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 01" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVT2M4bUk4cW01S00" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Exceso de engrasado</h4>
+                     <p>Pie del aislador, electrodos y caja de buj&iacute;as recubiertos de holl&iacute;n, con brillo aceitoso o con aceite carbonizado.</p>
+                     <p><b>Causa:</b> Demasiado aceite en la c&aacute;mara de combusti&oacute;n. Nivel de aceite demasiado alto. Retenes, cilindro y gu&iacute;s de v&aacute;lvula muy desgastados.</p>
+                     <p><b>Efecto:</b> Interrupciones de encendido. Mal comportamiento de arranque.</p>
+                     <p><b>Soluci&oacute;n:</b> Revisar motor. Mezcla de combustible-aceite correcta. Poner buj&iacute;as nuevas.</p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam02">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam02">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 02" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVbER0OUJiYlNGcTQ" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Exceso de engrasado</h4>
+                     <p>Pie del aislador, electrodos y caja de buj&iacute;as recubiertos de holl&iacute;n, con brillo aceitoso o con aceite carbonizado.</p>
+                     <p><b>Causa:</b> Demasiado aceite en la c&aacute;mara de combusti&oacute;n. Nivel de aceite demasiado alto. Retenes, cilindro y gu&iacute;s de v&aacute;lvula muy desgastados.</p>
+                     <p><b>Efecto:</b> Interrupciones de encendido. Mal comportamiento de arranque.</p>
+                     <p><b>Soluci&oacute;n:</b> Revisar motor. Mezcla de combustible-aceite correcta. Poner buj&iacute;as nuevas.</p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam03">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam03">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 03" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVTk5KcW5kWXRkTm8" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Contaminado con holl&iacute;n</h4>
+                     <p>Pie del aislador, electrodos y rosca de buj&iacute;a cubiertos de holl&iacute;n aterciopelado, de color negro mate.</p>
+                     <p><b>Causa:</b> Ajuste de la mezcla err&oacute;neo (carburador, inyecci&oacute;n): Mezcla demasiado rica. Filtro de aire muy sucio. El sistema autom&aacute;tico de arranque no funciona correctamente o mal ajuste del dispositivo de sobrecarga
+                        en fr&iacute;o. La mayor&iacute;a de los recorridos del veh&iacute;culo se realizan a corta distancia. Buj&iacute;as demasiado fr&iacute;as. Valor t&eacute;rmico demasiado bajo.</p>
+                     <p><b>Efecto:</b> Interrupciones en el encendido. Mal comportamiento del arranque en fr&iacute;o.</p>
+                     <p><b>Soluci&oacute;n:</b> Ajustar correctamente el dispositivo de arranque y sobrecarga. Comprobar el filtro de aire.</p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam04">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam04">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 04" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVa1dHNjRsNTNQck0" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Motor muy fr&iacute;o</h4>
+                     <p></p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam05">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam05">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 05" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVNnNaUmVOZUZYLU0" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Motor muy fr&iacute;o</h4>
+                     <p></p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam06">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam06">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 06" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVd3pQNlE4NnBDMFE" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Mezcla rica (deficiencia de aire)</h4>
+                     <p>Dep&oacute;sitos de color rojo anaranjado que cubren el pie del aislador, los electrodos y parcialmente la caja de buj&iacute;as.</p>
+                     <p><b>Causa:</b> Aditivos de combustible con hierro. Los dep&oacute;sitos se producen con un funcionamiento normal al cabo de unos pocos miles de kil&oacute;metros.</p>
+                     <p><b>Efecto:</b> El dep&oacute;sito con hierro es conductor el&eacute;ctrico y provoca interrupciones del encendido.</p>
+                     <p><b>Soluci&oacute;n:</b> Poner buj&iacute;as nuevas. No sirve limpiarlas</p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam07">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam07">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 07" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVRG90a1FCNW16NlE" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Mezcla rica (deficiencia de aire)</h4>
+                     <p>Dep&oacute;sitos de color rojo anaranjado que cubren el pie del aislador, los electrodos y parcialmente la caja de buj&iacute;as.</p>
+                     <p><b>Causa:</b> Aditivos de combustible con hierro. Los dep&oacute;sitos se producen con un funcionamiento normal al cabo de unos pocos miles de kil&oacute;metros.</p>
+                     <p><b>Efecto:</b> El dep&oacute;sito con hierro es conductor el&eacute;ctrico y provoca interrupciones del encendido.</p>
+                     <p><b>Soluci&oacute;n:</b> Poner buj&iacute;as nuevas. No sirve limpiarlas</p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam08">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam08">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 08" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVdmM3WG1WLS1sd1k" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Mezcla rica (deficiencia de aire)</h4>
+                     <p>Dep&oacute;sitos de color rojo anaranjado que cubren el pie del aislador, los electrodos y parcialmente la caja de buj&iacute;as.</p>
+                     <p><b>Causa:</b> Aditivos de combustible con hierro. Los dep&oacute;sitos se producen con un funcionamiento normal al cabo de unos pocos miles de kil&oacute;metros.</p>
+                     <p><b>Efecto:</b> El dep&oacute;sito con hierro es conductor el&eacute;ctrico y provoca interrupciones del encendido.</p>
+                     <p><b>Soluci&oacute;n:</b> Poner buj&iacute;as nuevas. No sirve limpiarlas</p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam09">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam09">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 09" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVcXhkZjctWEpnSWs" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Bien</h4>
+                     <p>Dep&oacute;sitos de color rojo anaranjado que cubren el pie del aislador, los electrodos y parcialmente la caja de buj&iacute;as.</p>
+                     <p><b>Causa:</b> Aditivos de combustible con hierro. Los dep&oacute;sitos se producen con un funcionamiento normal al cabo de unos pocos miles de kil&oacute;metros.</p>
+                     <p><b>Efecto:</b> El dep&oacute;sito con hierro es conductor el&eacute;ctrico y provoca interrupciones del encendido.</p>
+                     <p><b>Soluci&oacute;n:</b> Poner buj&iacute;as nuevas. No sirve limpiarlas</p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam10">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam10">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 10" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVcTFYTklKYmFOajQ" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Bien</h4>
+                     <p>Dep&oacute;sitos de color rojo anaranjado que cubren el pie del aislador, los electrodos y parcialmente la caja de buj&iacute;as.</p>
+                     <p><b>Causa:</b> Aditivos de combustible con hierro. Los dep&oacute;sitos se producen con un funcionamiento normal al cabo de unos pocos miles de kil&oacute;metros.</p>
+                     <p><b>Efecto:</b> El dep&oacute;sito con hierro es conductor el&eacute;ctrico y provoca interrupciones del encendido.</p>
+                     <p><b>Soluci&oacute;n:</b> Poner buj&iacute;as nuevas. No sirve limpiarlas</p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam11">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam11">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 11" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVTVdkSDMyUFpzVms" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Bien</h4>
+                     <p>Pie del aislador, electrodos y rosca de buj&iacute;a cubiertos de holl&iacute;n aterciopelado, de color negro mate.</p>
+                     <p><b>Causa:</b> Ajuste de la mezcla err&oacute;neo (carburador, inyecci&oacute;n): Mezcla demasiado rica. Filtro de aire muy sucio. El sistema autom&aacute;tico de arranque no funciona correctamente o mal ajuste del dispositivo de sobrecarga
+                        en fr&iacute;o. La mayor&iacute;a de los recorridos del veh&iacute;culo se realizan a corta distancia. Buj&iacute;as demasiado fr&iacute;as. Valor t&eacute;rmico demasiado bajo.</p>
+                     <p><b>Efecto:</b> Interrupciones en el encendido. Mal comportamiento del arranque en fr&iacute;o.</p>
+                     <p><b>Soluci&oacute;n:</b> Ajustar correctamente el dispositivo de arranque y sobrecarga. Comprobar el filtro de aire.</p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam12">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam12">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 12" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVa20tMEtTVGpYUGc" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Bien</h4>
+                     <p>Pie del aislador, electrodos y rosca de buj&iacute;a cubiertos de holl&iacute;n aterciopelado, de color negro mate.</p>
+                     <p><b>Causa:</b> Ajuste de la mezcla err&oacute;neo (carburador, inyecci&oacute;n): Mezcla demasiado rica. Filtro de aire muy sucio. El sistema autom&aacute;tico de arranque no funciona correctamente o mal ajuste del dispositivo de sobrecarga
+                        en fr&iacute;o. La mayor&iacute;a de los recorridos del veh&iacute;culo se realizan a corta distancia. Buj&iacute;as demasiado fr&iacute;as. Valor t&eacute;rmico demasiado bajo.</p>
+                     <p><b>Efecto:</b> Interrupciones en el encendido. Mal comportamiento del arranque en fr&iacute;o.</p>
+                     <p><b>Soluci&oacute;n:</b> Ajustar correctamente el dispositivo de arranque y sobrecarga. Comprobar el filtro de aire.</p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam13">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam13">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 13" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVOVZrQUNBV256SlE" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Bien</h4>
+                     <p>Pie del aislador, electrodos y rosca de buj&iacute;a cubiertos de holl&iacute;n aterciopelado, de color negro mate.</p>
+                     <p><b>Causa:</b> Ajuste de la mezcla err&oacute;neo (carburador, inyecci&oacute;n): Mezcla demasiado rica. Filtro de aire muy sucio. El sistema autom&aacute;tico de arranque no funciona correctamente o mal ajuste del dispositivo de sobrecarga
+                        en fr&iacute;o. La mayor&iacute;a de los recorridos del veh&iacute;culo se realizan a corta distancia. Buj&iacute;as demasiado fr&iacute;as. Valor t&eacute;rmico demasiado bajo.</p>
+                     <p><b>Efecto:</b> Interrupciones en el encendido. Mal comportamiento del arranque en fr&iacute;o.</p>
+                     <p><b>Soluci&oacute;n:</b> Ajustar correctamente el dispositivo de arranque y sobrecarga. Comprobar el filtro de aire.</p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam14">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam14">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 14" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVSWFqdE1pSkNrbG8" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Normal, mezcla &oacute;ptima</h4>
+                     <p>Pie del aislador es de color blanco gris&aacute;ceo, o amarillo gris&aacute;ceo a pardo. El motor funciona normalmente. Valor t&eacute;rmico correcto.</p>
+                     <p>El ajuste de la mezcla y del encendido son correctos. No hay interrupciones de encendido.</p>
+                     <p>El dispositivo de arranque en fr&iacute;o funcionan correctamente.</p>
+                     <p>No hay residuos de plomo del combustible o de componentes de aleaci&oacute;n del aceite del motor.</p>
+                     <p>No hay sobrecarga t&eacute;rmica.</p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam15">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam15">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 15" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVSWc3ZG4xcTJRWlk" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Bien</h4>
+                     <p>Dep&oacute;sitos de color rojo anaranjado que cubren el pie del aislador, los electrodos y parcialmente la caja de buj&iacute;as.</p>
+                     <p><b>Causa:</b> Aditivos de combustible con hierro. Los dep&oacute;sitos se producen con un funcionamiento normal al cabo de unos pocos miles de kil&oacute;metros.</p>
+                     <p><b>Efecto:</b> El dep&oacute;sito con hierro es conductor el&eacute;ctrico y provoca interrupciones del encendido.</p>
+                     <p><b>Soluci&oacute;n:</b> Poner buj&iacute;as nuevas. No sirve limpiarlas</p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam16">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam16">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 16" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVWVl3dXNnV3lHNmM" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Bien</h4>
+                     <p>Dep&oacute;sitos de color rojo anaranjado que cubren el pie del aislador, los electrodos y parcialmente la caja de buj&iacute;as.</p>
+                     <p><b>Causa:</b> Aditivos de combustible con hierro. Los dep&oacute;sitos se producen con un funcionamiento normal al cabo de unos pocos miles de kil&oacute;metros.</p>
+                     <p><b>Efecto:</b> El dep&oacute;sito con hierro es conductor el&eacute;ctrico y provoca interrupciones del encendido.</p>
+                     <p><b>Soluci&oacute;n:</b> Poner buj&iacute;as nuevas. No sirve limpiarlas</p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam17">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam17">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 17" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVMzZTVXJhRDJ3Q2s" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Bien</h4>
+                     <p>Dep&oacute;sitos de color rojo anaranjado que cubren el pie del aislador, los electrodos y parcialmente la caja de buj&iacute;as.</p>
+                     <p><b>Causa:</b> Aditivos de combustible con hierro. Los dep&oacute;sitos se producen con un funcionamiento normal al cabo de unos pocos miles de kil&oacute;metros.</p>
+                     <p><b>Efecto:</b> El dep&oacute;sito con hierro es conductor el&eacute;ctrico y provoca interrupciones del encendido.</p>
+                     <p><b>Soluci&oacute;n:</b> Poner buj&iacute;as nuevas. No sirve limpiarlas</p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam18">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam18">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 18" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVZU9UX0xzQ3FqUVk" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Bien</h4>
+                     <p>Dep&oacute;sitos de color rojo anaranjado que cubren el pie del aislador, los electrodos y parcialmente la caja de buj&iacute;as.</p>
+                     <p><b>Causa:</b> Aditivos de combustible con hierro. Los dep&oacute;sitos se producen con un funcionamiento normal al cabo de unos pocos miles de kil&oacute;metros.</p>
+                     <p><b>Efecto:</b> El dep&oacute;sito con hierro es conductor el&eacute;ctrico y provoca interrupciones del encendido.</p>
+                     <p><b>Soluci&oacute;n:</b> Poner buj&iacute;as nuevas. No sirve limpiarlas</p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam19">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam19">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 19" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVaW5oUS16SGhDd1k" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Bien</h4>
+                     <p></p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam20">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam20">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 20" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVLUp1X3JzYTJ4NHM" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Bien</h4>
+                     <p></p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam21">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam21">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 21" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVRjV4a3JFX1BFbWs" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Motor funciona algo caliente</h4>
+                     <p></p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam22">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam22">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 22" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVNEExX1pnUHVkb0U" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Motor caliente o falta de lubricante</h4>
+                     <p></p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam23">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam23">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 23" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVeVRaQ3I4bWNjQ1E" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Motor caliente o falta de lubricante</h4>
+                     <p></p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam24">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam24">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 24" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVR3Myd3prYjA4ekk" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Motor caliente o falta de lubricante</h4>
+                     <p></p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam25">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam25">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 25" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVNElua2NZUUprejQ" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Extremadamente caliente o falta de lubricante</h4>
+                     <p>Dep&oacute;sito grueso de ceniza sobre el aislador, el respirador (ranura anular) y el electrodo de masa, por aditivos del aceite o del combustible. Estructura suelta o a modo de escorias.</p>
+                     <p><b>Causa:</b> Componentes de aleaci&oacute;n, en especial de aceite, pueden dejar estas cenizas en la c&aacute;mara de combusti&oacute;n y en el frente de las buj&iacute;as.</p>
+                     <p><b>Efecto:</b> Pueden conducir a encendidos incandescentes (autoencendido) con p&eacute;rdida de potencia y da&ntilde;os en el motor.</p>
+                     <p><b>Soluci&oacute;n:</b> Poner en orden el motor. Poner buj&iacute;as nuevas. Eventualmente usar otro aceite.</p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam26">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam26">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 26" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVMURIZmh5dzZtX28" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Extremadamente caliente o falta de lubricante</h4>
+                     <p>Dep&oacute;sito grueso de ceniza sobre el aislador, el respirador (ranura anular) y el electrodo de masa, por aditivos del aceite o del combustible. Estructura suelta o a modo de escorias.</p>
+                     <p><b>Causa:</b> Componentes de aleaci&oacute;n, en especial de aceite, pueden dejar estas cenizas en la c&aacute;mara de combusti&oacute;n y en el frente de las buj&iacute;as.</p>
+                     <p><b>Efecto:</b> Pueden conducir a encendidos incandescentes (autoencendido) con p&eacute;rdida de potencia y da&ntilde;os en el motor.</p>
+                     <p><b>Soluci&oacute;n:</b> Poner en orden el motor. Poner buj&iacute;as nuevas. Eventualmente usar otro aceite.</p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam27">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam27">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 27" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVeTdJOURFZmp0SHc" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Extremadamente caliente o falta de lubricante</h4>
+                     <p>Dep&oacute;sito grueso de ceniza sobre el aislador, el respirador (ranura anular) y el electrodo de masa, por aditivos del aceite o del combustible. Estructura suelta o a modo de escorias.</p>
+                     <p><b>Causa:</b> Componentes de aleaci&oacute;n, en especial de aceite, pueden dejar estas cenizas en la c&aacute;mara de combusti&oacute;n y en el frente de las buj&iacute;as.</p>
+                     <p><b>Efecto:</b> Pueden conducir a encendidos incandescentes (autoencendido) con p&eacute;rdida de potencia y da&ntilde;os en el motor.</p>
+                     <p><b>Soluci&oacute;n:</b> Poner en orden el motor. Poner buj&iacute;as nuevas. Eventualmente usar otro aceite.</p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam28">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam28">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 28" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVVXJwQ0FzZEZyVHc" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Extremadamente caliente o falta de lubricante</h4>
+                     <p>Dep&oacute;sito grueso de ceniza sobre el aislador, el respirador (ranura anular) y el electrodo de masa, por aditivos del aceite o del combustible. Estructura suelta o a modo de escorias.</p>
+                     <p><b>Causa:</b> Componentes de aleaci&oacute;n, en especial de aceite, pueden dejar estas cenizas en la c&aacute;mara de combusti&oacute;n y en el frente de las buj&iacute;as.</p>
+                     <p><b>Efecto:</b> Pueden conducir a encendidos incandescentes (autoencendido) con p&eacute;rdida de potencia y da&ntilde;os en el motor.</p>
+                     <p><b>Soluci&oacute;n:</b> Poner en orden el motor. Poner buj&iacute;as nuevas. Eventualmente usar otro aceite.</p>
+                  </div>
+               </div>
+               <div class="row" id="bujiam29">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujiam29">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 29" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVcmVxeWthbDF6ZTA" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Extremadamente caliente o falta de lubricante</h4>
+                     <p>Electrodo medio fundido y electrodo de masa muy atacado.</p>
+                     <p><b>Causa:</b> Sobrecarga t&eacute;rmica por encendidos incandescentes, por ejemplo, ajuste adelantado del encendido, restos de combusti&oacute;n, v&aacute;lvulas defectuosas, distribuidor da&ntilde;ado y calidad del combustible deficiente.</p>
+                     <p><b>Efecto:</b> Interrupciones de encendido, p&eacute;rdida de potencia, eventualmente da&ntilde;os en el motor. Posible grieta en el pie del aislador por electrodo medio sobrecalentado.</p>
+                     <p><b>Soluci&oacute;n:</b> Comprobar motor, encendido y preparaci&oacute;n de la mezcla. Poner buj&iacute;as nuevas.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="bs-docs-section text-justify" id="section_bujias_turismos">
+               <div class="row">
+                  <h2 id="bujias_turismos">
+                     <div class="col-sm-6">
+                        <span><a href="#bujias_turismos">Estado de buj&iacute;as en turismos</a></span>
+                     </div>
+                     <div class="col-sm-6 text-right">
+                        <button class="btn btn-default hidden-print" onclick="javascript:printDiv('section_bujias_turismos')" autocomplete="off" title="Imprimir secci&oacute;n">
+                           <span class="glyphicon glyphicon-print"></span>
+                        </button>
+                     </div>
+                  </h2>
+               </div>
+               <p>Las buj&iacute;as forman parte de los componentes vitales de un veh&iacute;culo con motor de gasolina, y determinan, de forma decisiva, la potencia &oacute;ptima y el funcionamiento seguro del motor. Esto se mantiene durante toda su vida
+                  &uacute;til.</p>
+               <div class="row" id="bujia01">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujia01">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 01" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVVE9PWU1UV0ZWV1k" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Normal, mezcla &oacute;ptima</h4>
+                     <p>Pie del aislador es de color blanco gris&aacute;ceo, o amarillo gris&aacute;ceo a pardo. El motor funciona normalmente. Valor t&eacute;rmico correcto.</p>
+                     <p>El ajuste de la mezcla y del encendido son correctos. No hay interrupciones de encendido.</p>
+                     <p>El dispositivo de arranque en fr&iacute;o funcionan correctamente.</p>
+                     <p>No hay residuos de plomo del combustible o de componentes de aleaci&oacute;n del aceite del motor.</p>
+                     <p>No hay sobrecarga t&eacute;rmica.</p>
+                  </div>
+               </div>
+               <div class="row" id="bujia02">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujia02">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 02" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVMHhqdnY4S0EwSlU" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Normal, mezcla &oacute;ptima</h4>
+                     <p>Pie del aislador es de color blanco gris&aacute;ceo, o amarillo gris&aacute;ceo a pardo. El motor funciona normalmente. Valor t&eacute;rmico correcto.</p>
+                     <p>El ajuste de la mezcla y del encendido son correctos. No hay interrupciones de encendido.</p>
+                     <p>El dispositivo de arranque en fr&iacute;o funcionan correctamente.</p>
+                     <p>No hay residuos de plomo del combustible o de componentes de aleaci&oacute;n del aceite del motor.</p>
+                     <p>No hay sobrecarga t&eacute;rmica.</p>
+                  </div>
+               </div>
+               <div class="row" id="bujia03">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujia03">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 03" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVUlZyeFluNFpIbWs" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Formaci&oacute;n de holl&iacute;n</h4>
+                     <p>Pie del aislador, electrodos y rosca de buj&iacute;a cubiertos de holl&iacute;n aterciopelado, de color negro mate.</p>
+                     <p><b>Causa:</b> Ajuste de la mezcla err&oacute;neo (carburador, inyecci&oacute;n): Mezcla demasiado rica. Filtro de aire muy sucio. El sistema autom&aacute;tico de arranque no funciona correctamente o mal ajuste del dispositivo de sobrecarga
+                        en fr&iacute;o. La mayor&iacute;a de los recorridos del veh&iacute;culo se realizan a corta distancia. Buj&iacute;as demasiado fr&iacute;as. Valor t&eacute;rmico demasiado bajo.</p>
+                     <p><b>Efecto:</b> Interrupciones en el encendido. Mal comportamiento del arranque en fr&iacute;o.</p>
+                     <p><b>Soluci&oacute;n:</b> Ajustar correctamente el dispositivo de arranque y sobrecarga. Comprobar el filtro de aire.</p>
+                  </div>
+               </div>
+               <div class="row" id="bujia04">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujia04">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 04" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVdjFrbTZfbW9rU00" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Formaci&oacute;n de holl&iacute;n</h4>
+                     <p>Pie del aislador, electrodos y rosca de buj&iacute;a cubiertos de holl&iacute;n aterciopelado, de color negro mate.</p>
+                     <p><b>Causa:</b> Ajuste de la mezcla err&oacute;neo (carburador, inyecci&oacute;n): Mezcla demasiado rica. Filtro de aire muy sucio. El sistema autom&aacute;tico de arranque no funciona correctamente o mal ajuste del dispositivo de sobrecarga
+                        en fr&iacute;o. La mayor&iacute;a de los recorridos del veh&iacute;culo se realizan a corta distancia. Buj&iacute;as demasiado fr&iacute;as. Valor t&eacute;rmico demasiado bajo.</p>
+                     <p><b>Efecto:</b> Interrupciones en el encendido. Mal comportamiento del arranque en fr&iacute;o.</p>
+                     <p><b>Soluci&oacute;n:</b> Ajustar correctamente el dispositivo de arranque y sobrecarga. Comprobar el filtro de aire.</p>
+                  </div>
+               </div>
+               <div class="row" id="bujia05">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujia05">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 05" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVbVZGU2VZU0w3QTQ" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Engrasado</h4>
+                     <p>Pie del aislador, electrodos y caja de buj&iacute;as recubiertos de holl&iacute;n con brillo aceitoso o con aceite carbonizado.</p>
+                     <p><b>Causa:</b> Demasiado aceite en la c&aacute;mara de combusti&oacute;n. Nivel de aceite demasiado alto. Retenes, cilindro y gu&iacute;as de v&aacute;lvula muy desgastados.</p>
+                     <p><b>Efecto:</b> Interrupciones de encendido. Mal comportamiento de arranque.</p>
+                     <p><b>Soluci&oacute;n:</b> Revisar motor. Mezcla de combustible-aceite correcta. Poner buj&iacute;as nuevas.</p>
+                  </div>
+               </div>
+               <div class="row" id="bujia06">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujia06">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 06" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVYU1jMGFyRnJRSkk" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Engrasado</h4>
+                     <p>Pie del aislador, electrodos y caja de buj&iacute;as recubiertos de holl&iacute;n con brillo aceitoso o con aceite carbonizado.</p>
+                     <p><b>Causa:</b> Demasiado aceite en la c&aacute;mara de combusti&oacute;n. Nivel de aceite demasiado alto. Retenes, cilindro y gu&iacute;as de v&aacute;lvula muy desgastados.</p>
+                     <p><b>Efecto:</b> Interrupciones de encendido. Mal comportamiento de arranque.</p>
+                     <p><b>Soluci&oacute;n:</b> Revisar motor. Mezcla de combustible-aceite correcta. Poner buj&iacute;as nuevas.</p>
+                  </div>
+               </div>
+               <div class="row" id="bujia07">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujia07">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 07" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVbl9oNUpkY1cwSjQ" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Electrodo medio muy desgastado</h4>
+                     <p><b>Causa:</b> Intervalo de cambio de buj&iacute;as excesivo.</p>
+                     <p><b>Efecto:</b> Interrupciones de encendido, especialmente al acelerar (la tensi&oacute;n de encendido no es suficiente para una distancia grande entre electrodos). Mal comportamiento de arranque.</p>
+                     <p><b>Soluci&oacute;n:</b> Poner buj&iacute;as nuevas.</p>
+                  </div>
+               </div>
+               <div class="row" id="bujia08">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujia08">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 08" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVTHd6cUcyX1oxbEE" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Emplomadura</h4>
+                     <p>El pie del aislador presenta en algunos lugares un vidriado pardo amarillento o verdoso.</p>
+                     <p><b>Causa:</b> Aditivos del combustible con plomo. El vidriado se produce con carga alta del motor, despu&eacute;s de funcionamiento prolongado con carga parcial.</p>
+                     <p><b>Efecto:</b> Con carga m&aacute;s alta, el recubrimiento se vuelve conductor el&eacute;ctrico y provoca interrupciones de encendido.</p>
+                     <p><b>Soluci&oacute;n:</b> Buj&iacute;as nuevas. No sirve la limpieza.</p>
+                  </div>
+               </div>
+               <div class="row" id="bujia09">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujia09">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 09" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVdnVaRFJjSzNtWE0" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Emplomadura intensa</h4>
+                     <p>El pie del aislador presenta en algunos lugares un vidriado pardo amarillento grueso, que puede ser tambi&eacute;n verdoso.</p>
+                     <p><b>Causa:</b> Aditivos del combustible con plomo. El vidriado se produce con carga alta del motor despu&eacute;s de funcionamiento prolongado con carga parcial.</p>
+                     <p><b>Efecto:</b> Con carga m&aacute;s alta, el recubrimiento se vuelve conductor el&eacute;ctrico y provoca interrupciones del encendido.</p>
+                     <p><b>Soluci&oacute;n:</b> Buj&iacute;as nuevas. No sirve la limpieza.</p>
+                  </div>
+               </div>
+               <div class="row" id="bujia10">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujia10">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 10" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVbDlmd0RyV1ZZdk0" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Emplomadura intensa</h4>
+                     <p>El pie del aislador presenta en algunos lugares un vidriado pardo amarillento grueso, que puede ser tambi&eacute;n verdoso.</p>
+                     <p><b>Causa:</b> Aditivos del combustible con plomo. El vidriado se produce con carga alta del motor despu&eacute;s de funcionamiento prolongado con carga parcial.</p>
+                     <p><b>Efecto:</b> Con carga m&aacute;s alta, el recubrimiento se vuelve conductor el&eacute;ctrico y provoca interrupciones del encendido.</p>
+                     <p><b>Soluci&oacute;n:</b> Buj&iacute;as nuevas. No sirve la limpieza.</p>
+                  </div>
+               </div>
+               <div class="row" id="bujia11">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujia11">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 11" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVR3Q5b282VncyckU" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Formaci&oacute;n de ceniza</h4>
+                     <p>Dep&oacute;sito grueso de ceniza sobre el aislador, el respirador (ranura anular) y el electrodo de masa, por aditivos del aceite o del combustible. Estructura suelta o a modo de escorias.</p>
+                     <p><b>Causa:</b> Componentes de aleaci&oacute;n, en especial de aceite, pueden dejar estas cenizas en la c&aacute;mara de combusti&oacute;n y en el frente de las buj&iacute;as.</p>
+                     <p><b>Efecto:</b> Pueden conducir a encendidos incandescentes (autoencendido) con p&eacute;rdida de potencia y da&ntilde;os en el motor.</p>
+                     <p><b>Soluci&oacute;n:</b> Poner en orden el motor. Poner buj&iacute;as nuevas. Eventualmente usar otro aceite.</p>
+                  </div>
+               </div>
+               <div class="row" id="bujia12">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujia12">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 12" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVa1VLVXpQQVlTalE" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Formaci&oacute;n de ceniza</h4>
+                     <p>Dep&oacute;sito grueso de ceniza sobre el aislador, el respirador (ranura anular) y el electrodo de masa, por aditivos del aceite o del combustible. Estructura suelta o a modo de escorias.</p>
+                     <p><b>Causa:</b> Componentes de aleaci&oacute;n, en especial de aceite, pueden dejar estas cenizas en la c&aacute;mara de combusti&oacute;n y en el frente de las buj&iacute;as.</p>
+                     <p><b>Efecto:</b> Pueden conducir a encendidos incandescentes (autoencendido) con p&eacute;rdida de potencia y da&ntilde;os en el motor.</p>
+                     <p><b>Soluci&oacute;n:</b> Poner en orden el motor. Poner buj&iacute;as nuevas. Eventualmente usar otro aceite.</p>
+                  </div>
+               </div>
+               <div class="row" id="bujia13">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujia13">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 13" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVR0JNSE1TQnZkR1E" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Electrodo medio fundido</h4>
+                     <p>Electrodo medio fundido, punta del pie del aislador abaldada y con burbujas.</p>
+                     <p><b>Causa:</b> Sobrecarga t&eacute;rmica por encendidos incandescentes (autoencendido), por ejemplo, ajuste adelantado del encendido, restos de combusti&oacute;n v&aacute;lvulas defectuosas, distribuidor da&ntilde;ado y calidad del
+                        combustible insuficiente. Eventualmente calor t&eacute;rmico demasiado bajo.</p>
+                     <p><b>Efecto:</b> Interrupciones de encendido, p&eacute;rdida de potencia (da&ntilde;os del motor).</p>
+                     <p><b>Soluci&oacute;n:</b> Comprobar motor, encendido y preparaci&oacute;n de la mezcla. Poner buj&iacute;as nuevas con valor t&eacute;rmico correcto.</p>
+                  </div>
+               </div>
+               <div class="row" id="bujia14">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujia14">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 14" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVRzhGbm5HSi1NbnM" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Electrodo medio fundido</h4>
+                     <p>Electrodo medio fundido y electrodo de masa muy atacado.</p>
+                     <p><b>Causa:</b> Sobrecarga t&eacute;rmica por encendidos incandescentes, por ejemplo, ajuste adelantado del encendido, restos de combusti&oacute;n, v&aacute;lvulas defectuosas, distribuidor da&ntilde;ado y calidad del combustible deficiente.</p>
+                     <p><b>Efecto:</b> Interrupciones de encendido, p&eacute;rdida de potencia, eventualmente da&ntilde;os en el motor. Posible grieta en el pie del aislador por electrodo medio sobrecalentado.</p>
+                     <p><b>Soluci&oacute;n:</b> Comprobar motor, encendido y preparaci&oacute;n de la mezcla. Poner buj&iacute;as nuevas.</p>
+                  </div>
+               </div>
+               <div class="row" id="bujia15">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujia15">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 15" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVbVpEcXZRVnEtcHM" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Electrodos fundidos</h4>
+                     <p>Electrodos con aspecto de coliflor. Eventualmente, dep&oacute;sitos de materiales ajenos a las buj&iacute;as.</p>
+                     <p><b>Causa:</b> Sobrecarga t&eacute;rmica, por ejemplo, por ajuste adelantado del encendido, restos de combusti&oacute;n, v&aacute;lvulas defectuosas o distribuidor da&ntilde;ado.</p>
+                     <p><b>Efecto:</b> Antes del fallo total (da&ntilde;os del motor) se produce una p&eacute;rdida de potencia.</p>
+                     <p><b>Soluci&oacute;n:</b> Comprobar motor, encendido y preparaci&oacute;n de mezcla. Poner buj&iacute;as nuevas.</p>
+                  </div>
+               </div>
+               <div class="row" id="bujia16">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujia16">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 16" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVUWhXOUVDejJRdlE" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Oxidaci&oacute;n</h4>
+                     <p>Dep&oacute;sitos de color rojo anaranjado que cubren el pie del aislador, los electrodos y parcialmente la caja de buj&iacute;as.</p>
+                     <p><b>Causa:</b> Aditivos de combustible con hierro. Los dep&oacute;sitos se producen con un funcionamiento normal al cabo de unos pocos miles de kil&oacute;metros.</p>
+                     <p><b>Efecto:</b> El dep&oacute;sito con hierro es conductor el&eacute;ctrico y provoca interrupciones del encendido.</p>
+                     <p><b>Soluci&oacute;n:</b> Poner buj&iacute;as nuevas. No sirve limpiarlas</p>
+                  </div>
+               </div>
+               <div class="row" id="bujia17">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujia17">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 17" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVamNJeGlrUjY0RVk" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Desgaste del eletrodo de masa</h4>
+                     <p><b>Causa:</b> Aditivos agresivos procedentes del aceite y del combustible. Condiciones de circulaci&oacute;n desfavorables en la c&aacute;mara de combusti&oacute;n, eventualmente por dep&oacute;sitos, picado del motor. No hay sobrecarga
+                        t&eacute;rmica.
+                     </p>
+                     <p><b>Efecto:</b> Interrupciones de encendido, en especial al acelerar (la tensi&oacute;n de encendido no es suficiente para la gran separaci&oacute;n de los electrodos). Mal comportamiento de arranque.</p>
+                     <p><b>Soluci&oacute;n:</b> Poner buj&iacute;as nuevas.</p>
+                  </div>
+               </div>
+               <div class="row" id="bujia18">
+                  <div class="col-xs-3">
+                     <center>
+                        <a href="#bujia18">
+                           <img class="thumbnail img-responsive" alt="Buj&iacute;a 18" src="https://drive.google.com/uc?export=view&id=0B7Fp5QCwhbsVQ3N2NDJoZ3ptaFU" />
+                        </a>
+                     </center>
+                  </div>
+                  <div class="col-xs-9 text-justify">
+                     <h4>Rotura del pie del aislador</h4>
+                     <p><b>Causa:</b> Da&ntilde;os mec&aacute;nicos por una manipulaci&oacute;n descuidada. En caso extremo, debido a los dep&oacute;sitos entre el electrodo medio y el pie aislador. Por corrosi&oacute;n del electrodo medio puede romperse
+                        el pie del aislador (especialmente, en caso de funcionamiento excesivamente prolongado).</p>
+                     <p><b>Efecto:</b> Interrupciones de encendido. Saltan chispas de encendido en los lugares a los que no llega con seguridad la mezcla fresca.</p>
+                     <p><b>Soluci&oacute;n:</b> Poner buj&iacute;as nuevas.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Indice con ScrollSpy -->
+      <div class="col-md-3" role="complementary" id="navbar">
+         <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix">
+            <ul class="nav bs-docs-sidenav">
+               <li>
+                  <h4>&Iacute;ndice de contenidos</h4>
+               </li>
+               <li><a href="#neumaticos">Neum&aacute;ticos</a>
+                  <ul class="nav">
+                     <li><a href="#ic">&Iacute;ndice de carga (IC)</a></li>
+                     <li><a href="#iv">&Iacute;ndice de velocidad (IV)</a></li>
+                     <li><a href="#equivalencias">Equival&eacute;ncias de neum&aacute;ticos</a></li>
+                     <li><a href="#alineacion">Alineaci&oacute;n</a>
+                        <ul class="nav">
+                           <li><a href="#caida_0">Ca&iacute;da a 0</a></li>
+                           <li><a href="#caida_negativa">Ca&iacute;da negativa</a></li>
+                           <li><a href="#caida_positiva">Ca&iacute;da positiva</a></li>
+                           <li><a href="#convergencia_0">Convergencia a 0</a></li>
+                           <li><a href="#convergencia_negativa">Convergencia negativa</a></li>
+                           <li><a href="#convergencia_positiva">Convergencia positiva</a></li>
+                           <li><a href="#avance_0">Avance a 0º</a></li>
+                           <li><a href="#avance_negativo">Avance negativo</a></li>
+                           <li><a href="#avance_positivo">Avance positivo</a></li>
+                        </ul>
+                     </li>
+                     <li><a href="#desgastes">Tipos de desgaste de neum&aacute;ticos</a>
+                        <ul class="nav">
+                           <li><a href="#desgaste_correcto">Desgaste correcto</a></li>
+                           <li><a href="#desgaste_falta_presion">Desgaste por falta de presi&oacute;n</a></li>
+                           <li><a href="#desgaste_exceso_presion">Desgaste por exceso de presi&oacute;n</a></li>
+                           <li><a href="#desgaste_caida">Desgaste por ca&iacute;da</a></li>
+                           <li><a href="#desgaste_convergencia">Desgaste por convergencia</a></li>
+                           <li><a href="#desgaste_variado">Desgaste variado</a></li>
+                        </ul>
+                     </li>
+                  </ul>
+               </li>
+               <li><a href="#iluminacion">Iluminación</a>
+                   <ul class="nav">
+                     <li><a href="#indicadores_tablero">Indicadores tablero</a></li>
+                     <li><a href="#tipos_lamparas">Tipos de l&aacute;mparas</a>
+                        <ul class="nav">
+                           <li><a href="#lamparas_descarga">L&aacute;mparas de descarga</a></li>
+                           <li><a href="#lamparas_halogenas">L&aacute;mparas hal&oacute;genas</a></li>
+                           <li><a href="#lamparas_senalizacion">L&aacute;mparas de señalizaci&oacute;n</a></li>
+                        </ul>                     
+                     </li>
+                  </ul>
+                   
+               </li>
+               <li><a href="#enganche_remolque_caravana">Esquema montaje remolque/caragana</a></li>
+               <li><a href="#fechas_matriculaciones">Fechas de matriculaci&oacute;n</a></li>
+               <li><a href="#bujias">Estado de buj&iacute;as</a>
+                  <ul class="nav">
+                     <li><a href="#bujias_motocicletas">Estado de buj&iacute;as en motocicletas</a></li>
+                     <li><a href="#bujias_turismos">Estado de buj&iacute;as en turismos</a></li>
+                  </ul>
+               </li>
+            </ul>
+         </nav>
+      </div>
+
+   </div>
+</div>
+
+{include="footer"}

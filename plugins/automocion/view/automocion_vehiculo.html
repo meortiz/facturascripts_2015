@@ -1,0 +1,823 @@
+{include="header"}
+
+{if="$fsc->editar_vehiculo"}
+
+<script type="text/javascript" src="plugins/automocion/view/js/jquery-iframe-auto-height.min.js"></script>
+<script type="text/javascript" src="plugins/automocion/view/js/jquery.browser.js"></script>
+<script type="text/javascript">
+    function eliminar_vehiculo(id) {
+          if( confirm("¿Realmente quieres eliminar el vehiculo?") )
+              window.location.href = '{$fsc->url()}&delete='+id;
+      }
+      
+   $(document).ready(function() {
+      $('iframe').iframeAutoHeight({
+         // add some buffer to the bottom
+         heightOffset: 0,
+         // set the iframe height to this value if the calculated value is less
+         minHeight: 400,
+         maxHeight: 600,
+         // use jquery animate with duration of 500 when resizing the iframe
+         animate: false,
+         // hard set the iframe height to the minHeight before re-sizing
+         resetToMinHeight: false,
+         debug: true
+      });
+
+      $("#edit_ac_cliente").autocomplete({
+         serviceUrl: '{$fsc->url()}',
+         paramName: 'buscar_cliente',
+         onSelect: function(suggestion) {
+            if (suggestion) {
+               if (document.f_editar_vehiculo.codcliente.value != suggestion.data) {
+                  document.f_editar_vehiculo.codcliente.value = suggestion.data;
+               }
+            }
+         }
+      });
+      $("#edit_ac_marca").autocomplete({
+         serviceUrl: '{$fsc->url()}',
+         paramName: 'buscar_marca_vehiculo',
+         onSelect: function(suggestion) {
+            if (suggestion) {
+               if (document.f_editar_vehiculo.marca.value != suggestion.data) {
+                  document.f_editar_vehiculo.marca.value = suggestion.data;
+                  updateEditAcMarca();
+               }
+            }
+         }
+      });
+
+      function updateEditAcMarca() {
+         var newUrl = '{$fsc->url()}&marca_vehiculo=' + document.f_editar_vehiculo.marca.value;
+         $("#edit_ac_denominacion_comercial").autocomplete("option", "source", newUrl);
+      }
+      $("#edit_ac_marca").on('change', updateEditAcMarca);
+      $("#edit_ac_denominacion_comercial").autocomplete({
+         serviceUrl: '{$fsc->url()}',
+         paramName: 'buscar_modelo_vehiculo',
+         onSelect: function(suggestion) {
+            if (suggestion) {
+               if (document.f_editar_vehiculo.denominacion_comercial.value != suggestion.data) {
+                  document.f_editar_vehiculo.denominacion_comercial.value = suggestion.data;
+                  updateEditAcMarca();
+               }
+            }
+         }
+      });
+
+      /* Validación de formulario */
+      $("#f_editar_vehiculo").validate({
+         rules: {
+            new_ac_cliente: {
+               required: true
+            },
+            matricula: {
+               required: true
+            },
+            new_ac_marca: {
+               required: true
+            },
+            new_ac_denominacion_comercial: {
+               required: true
+            }
+         },
+         messages: {
+            edit_ac_cliente: {
+               required: "El campo es obligatorio.",
+            },
+            matricula: {
+               required: "El campo es obligatorio.",
+            },
+            edit_ac_marca: {
+               required: "El campo es obligatorio.",
+            },
+            edit_ac_denominacion_comercial: {
+               required: "El campo es obligatorio.",
+            },
+         }
+      });
+
+      function printDiv(divID) {
+         /* Gracias a: http://sarwarhossain.com/2010/10/05/print-a-div-open-new-window-print-and-close-using-javascirpt/ */
+         var contents = document.getElementById(divID).innerHTML;
+         var codeHTML = '<!DOCTYPE html><html><head><title>Imprimir p&aacute;gina</title><link rel="stylesheet" href="view/css/bootstrap-yeti.min.css" /></head><body onload="self.print()">' + contents + '</body></html>';
+
+         var newWindowObject = window.open("", "Imprimir p&aacute;gina");
+         newWindowObject.document.writeln(codeHTML);
+         newWindowObject.document.close();
+         newWindowObject.focus();
+      }
+
+      function show_nuevo_vehiculo() {
+         $("#modal_nuevo_vehiculo").modal('show');
+         document.f_nuevo_vehiculo.nombre.focus();
+      }
+   });
+</script>
+
+<div class="container-fluid" style="margin-top: 10px;">
+   <div class="row">
+      <div class="col-sm-4 col-xs-2">
+         <div class="btn-group hidden-xs">
+            <a class="btn btn-sm btn-default" href="{$fsc->url()}" title="Recargar la página">
+               <span class="glyphicon glyphicon-refresh"></span>
+            </a>
+            {if condition="$fsc->page->is_default()"}
+            <a class="btn btn-sm btn-default active" href="{$fsc->url()}&amp;default_page=FALSE" title="Desmarcar como página de inicio">
+               <span class="glyphicon glyphicon-home"></span>
+            </a>
+            {else}
+            <a class="btn btn-sm btn-default" href="{$fsc->url()}&amp;default_page=TRUE" title="Marcar como página de inicio">
+               <span class="glyphicon glyphicon-home"></span>
+            </a>
+            {/if}
+         </div>
+         <div class="btn-group hidden-xs">
+            <a class="btn btn-sm btn-default" href="index.php?page=automocion_vehiculos">
+               <span class="glyphicon glyphicon-arrow-left"></span>
+               <span class="hidden-xs">&nbsp; Veh&iacute;culos</span>
+            </a>
+         </div>
+      </div>
+      <div class="col-sm-8 col-xs-10 text-right">
+         <h2 style="margin-top: 0px;">Vehículo {$fsc->editar_vehiculo->matricula}</h2>
+      </div>
+   </div>
+</div>
+
+<div role="tabpanel">
+   <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active">
+         <a href="#editar" aria-controls="editar" role="tab" data-toggle="tab" title="Editar">
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+            <span class="hidden-xs"> &nbsp; Detalles</span>
+         </a>
+      </li>
+      {if condition="$fsc->query"}
+      <li role="search" {if condition="$fsc->query"} class="active" {/if}>
+         <a href="#buscar" aria-controls="buscar" role="tab" data-toggle="tab" title="Buscar">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            <span class="hidden-xs"> &nbsp; Resultados para '{$fsc->query}'</span>
+            <span class="badge">{$fsc->count_search_list}</span>
+         </a>
+      </li>
+      {/if}
+      {if condition="in_array('presupuestos_y_pedidos',$GLOBALS['plugins'])"}
+      <li role="presentation">
+         <a href="#vehiculo_presupuestos" aria-controls="vehiculo_presupuestos" role="tab" data-toggle="tab">
+            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+            <span class="hidden-xs"> &nbsp; 
+                <span class="text-capitalize">{#FS_PRESUPUESTOS#}</span>
+                <span class="badge"> {$fsc->count_presupuestos}</span>
+            </span>
+         </a>
+      </li>
+      <li role="presentation">
+         <a href="#vehiculo_pedidos" aria-controls="vehiculo_pedidos" role="tab" data-toggle="tab">
+            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+            <span class="hidden-xs"> &nbsp; 
+                <span class="text-capitalize">{#FS_PEDIDOS#}</span>
+                <span class="badge"> {$fsc->count_pedidos}</span>
+            </span>
+         </a>
+      </li>
+      {/if}
+      {if condition="in_array('servicios',$GLOBALS['plugins'])"}
+      <li role="presentation">
+         <a href="#vehiculo_servicios" aria-controls="vehiculo_servicios" role="tab" data-toggle="tab">
+            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+            <span class="hidden-xs"> &nbsp; 
+                <span class="text-capitalize">{#FS_SERVICIOS#}</span>
+                <span class="badge"> {$fsc->count_servicios}</span>
+            </span>
+         </a>
+      </li>
+      {/if}
+      {if condition="in_array('facturacion_base',$GLOBALS['plugins'])"}
+      <li role="presentation">
+         <a href="#vehiculo_albaranes" aria-controls="vehiculo_albaranes" role="tab" data-toggle="tab">
+            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+            <span class="hidden-xs"> &nbsp; 
+                <span class="text-capitalize">{#FS_ALBARANES#}</span>
+                <span class="badge"> {$fsc->count_albaranes}</span>
+            </span>
+         </a>
+      </li>
+      <li role="presentation">
+         <a href="#vehiculo_facturas" aria-controls="vehiculo_facturas" role="tab" data-toggle="tab">
+            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+            <span class="hidden-xs"> &nbsp; 
+                <span class="text-capitalize">{#FS_FACTURAS#}</span>
+                <span class="badge"> {$fsc->count_facturas}</span>
+            </span>
+         </a>
+      </li>
+      {/if}
+   </ul>
+
+   <div class="tab-content">
+
+      <div role="tabpanel" class='tab-pane{if condition="$fsc->editar_vehiculo"} active{/if}' id="editar">
+         {if condition="$fsc->editar_vehiculo"}
+         <form name="f_editar_vehiculo" id="f_editar_vehiculo" class="form" action="{$fsc->url()}&id={$fsc->editar_vehiculo->id}" role="form" method="post">
+            <input type="hidden" name="id" value="{$fsc->editar_vehiculo->id}" />
+            <div class="container" style="margin-top: 10px;">
+               <div class="row">
+                  <h3>
+                     <div class="col-xs-8">
+                        <span>Detalles del vehículo</span>
+                     </div>
+                     <div class="col-xs-4 text-right">
+                        <div class="btn-group" role="group" aria-label="...">
+                            {if="$fsc->allow_delete"}
+                            <button type="button" class="btn btn-sm hidden-print" onclick="javascript:printDiv('imprimir_ficha_tecnica_vieja')" autocomplete="off" title="Imprimir secci&oacute;n">
+                               <span class="glyphicon glyphicon-print"></span>
+                            </button>
+                            <a onclick="eliminar_vehiculo('{$fsc->editar_vehiculo->id}')" class="btn btn-sm btn-danger hidden-print" title="Eliminar">
+                               <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            </a>
+                            <button type="submit" class="btn btn-sm btn-primary hidden-print" title="Guardar">
+                               <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+                            </button>
+                            {/if}
+                        </div>
+                     </div>
+                  </h3>
+               </div>
+               <div class="row">
+                  <div class="col-xs-12">
+                     <div class="form-group form-group-sm">
+                        Cliente:
+                        <input type="hidden" name="codcliente" id="codcliente" value="{$fsc->editar_vehiculo->codcliente}" />
+                        <input class="form-control input-sm" type="text" name="edit_ac_cliente" id="edit_ac_cliente" placeholder="Buscar" autocomplete="off" value="{$fsc->cliente->get($fsc->editar_vehiculo->codcliente)->nombre}" autofocus />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        Matrícula:
+                        <input class="form-control input-sm" type="text" name="matricula" value="{$fsc->editar_vehiculo->matricula}" />
+                     </div>
+                  </div>
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        Número de bastidor<br/>[E]:
+                        <input class="form-control input-sm" type="text" name="bastidor" value="{$fsc->editar_vehiculo->bastidor}" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        Marca<br/>[D.1]:
+                        <input type="hidden" type="number" name="marca" id="marca" value="{$fsc->editar_vehiculo->marca}" />
+                        <input class="form-control input-sm" type="text" name="edit_ac_marca" id="edit_ac_marca" placeholder="Buscar" autocomplete="off" value="{$fsc->marca_vehiculo->get($fsc->editar_vehiculo->marca)->nombre}" autofocus />
+                     </div>
+                  </div>
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        Clase<br/>[C.L]:
+                        <input class="form-control input-sm" type="text" name="clase" value="{$fsc->editar_vehiculo->clase}" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        Tipo<br/>[D.2/1]:
+                        <input class="form-control input-sm" type="text" name="tipo" value="{$fsc->editar_vehiculo->tipo}" />
+                     </div>
+                  </div>
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        Altura total (mm)<br/>[F.4]:
+                        <input class="form-control input-sm" type="number" name="altura_total" value="{$fsc->editar_vehiculo->altura_total}" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        Variante<br/>[D.2/2]:
+                        <input class="form-control input-sm" type="text" name="variante" value="{$fsc->editar_vehiculo->variante}" />
+                     </div>
+                  </div>
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        Anchura total (mm)<br/>[F.4]:
+                        <input class="form-control input-sm" type="number" name="anchura_total" value="{$fsc->editar_vehiculo->anchura_total}" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        Denominación comercial<br/>[D.3]:
+                        <input type="hidden" type="number" name="denominacion_comercial" id="denominacion_comercial" value="{$fsc->editar_vehiculo->denominacion_comercial}" />
+                        <input class="form-control input-sm" type="text" name="edit_ac_denominacion_comercial" id="edit_ac_denominacion_comercial" placeholder="Buscar" autocomplete="off" value="{$fsc->modelo_vehiculo->get($fsc->editar_vehiculo->denominacion_comercial)->nombre}" autofocus
+                        />
+                     </div>
+                  </div>
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        Vía anterior/posterior (mm)<br/>[F.7 y F.7.1]:
+                        <input class="form-control input-sm" type="number" name="via_anterior" value="{$fsc->editar_vehiculo->via_anterior}" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        Tara (kg):
+                        <input class="form-control input-sm" type="number" name="tara" value="{$fsc->editar_vehiculo->tara}" />
+                     </div>
+                  </div>
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        Longitud total (mm)<br/>[F.6]:
+                        <input class="form-control input-sm" type="number" name="longitud" value="{$fsc->editar_vehiculo->longitud}" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        MTMA/MMA (kg)<br/>[F.1 y F.2]:
+                        <input class="form-control input-sm" type="number" name="mtma" value="{$fsc->editar_vehiculo->mtma}" />
+                     </div>
+                  </div>
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        Voladizo posterior (mm)<br/>[F.8]:
+                        <input class="form-control input-sm" type="number" name="voladizo_posterior" value="{$fsc->editar_vehiculo->voladizo_posterior}" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        MTMA/MMA 1º E (kg)<br/>[F.1.1/1]:
+                        <input class="form-control input-sm" type="number" name="mtma1e" value="{$fsc->editar_vehiculo->mtma1e}" />
+                     </div>
+                  </div>
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        Distancia eje 1º/2º (mm)<br/>[M.1/1]:
+                        <input class="form-control input-sm" type="number" name="distancia_eje_1_2" value="{$fsc->editar_vehiculo->distancia_eje_1_2}" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        MTMA/MMA 2º E (kg)<br/>[F.1.1/2]:
+                        <input class="form-control input-sm" type="number" name="mtma2e" value="{$fsc->editar_vehiculo->mtma2e}" />
+                     </div>
+                  </div>
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        Distancia eje 2º/3º (mm)<br/>[M.1/2]:
+                        <input class="form-control input-sm" type="number" name="distancia_eje_2_3" value="{$fsc->editar_vehiculo->distancia_eje_2_3}" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        MTMA/MMA 3º E (kg)<br/>[F.1.1/3]:
+                        <input class="form-control input-sm" type="number" name="mtma3e" value="{$fsc->editar_vehiculo->mtma3e}" />
+                     </div>
+                  </div>
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        Distancia eje 3º/4º (mm):
+                        <input class="form-control input-sm" type="number" name="distancia_eje_3_4" value="{$fsc->editar_vehiculo->distancia_eje_3_4}" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        MTMA/MMA 4º E(kg)<br/>[F.1.1/4]:
+                        <input class="form-control input-sm" type="number" name="mtma4e" value="{$fsc->editar_vehiculo->mtma4e}" />
+                     </div>
+                  </div>
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        Distancia 5ª rueda/últ. (mm)<br/>[M.4]:
+                        <input class="form-control input-sm" type="number" name="distancia_5_rueda" value="{$fsc->editar_vehiculo->distancia_5_rueda}" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        MMR S/F. c/F (kg):
+                        <input class="form-control input-sm" type="number" name="mmr" value="{$fsc->editar_vehiculo->mmr}" />
+                     </div>
+                  </div>
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        Marca motor<br/>[P.5.1]:
+                        <input class="form-control input-sm" type="text" name="marca_motor" value="{$fsc->editar_vehiculo->marca_motor}" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        Neumáticos<br/>[L.2]:
+                        <input class="form-control input-sm" type="text" name="neumaticos" value="{$fsc->editar_vehiculo->neumaticos}" />
+                     </div>
+                  </div>
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        Tipo motor<br/>[P.5]:
+                        <input class="form-control input-sm" type="text" name="tipo_motor" value="{$fsc->editar_vehiculo->tipo_motor}" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        Nº de asientos<br/>[S.1]:
+                        <input class="form-control input-sm" type="number" name="n_asientos" value="{$fsc->editar_vehiculo->n_asientos}" />
+                     </div>
+                  </div>
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        Nº Cilindros/Cilindrada (cm3)<br/>[P.1.1 y P.1]:
+                        <input class="form-control input-sm" type="text" name="cilindrada" value="{$fsc->editar_vehiculo->cilindrada}" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        Volumen de bodega<br/>[J.3]:
+                        <input class="form-control input-sm" type="number" name="volumen_bodega" value="{$fsc->editar_vehiculo->volumen_bodega}" />
+                     </div>
+                  </div>
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        Potencia fiscal/real (C.V.F./kW)<br/>[P.2.1 y P.2]:
+                        <input class="form-control input-sm" type="text" name="potencia" value="{$fsc->editar_vehiculo->potencia}" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        Homologaciones incluidas:
+                        <textarea class="form-control input-sm" rows="3" name="homologaciones">{$fsc->editar_vehiculo->homologaciones}</textarea>
+                     </div>
+                  </div>
+                  <div class="col-xs-6">
+                     <div class="form-group form-group-sm">
+                        Fecha primera matriculación:
+                        <input class="form-control input-sm datepicker" type="text" name="fecha_matriculacion" value="{$fsc->editar_vehiculo->fecha_matriculacion}" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-12">
+                     <div class="text-right">
+                        {if="$fsc->allow_delete"}
+                        <a onclick="eliminar_vehiculo('{$fsc->editar_vehiculo->id}')" class="btn btn-sm btn-danger" title="Eliminar">
+                           <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                           &nbsp; Eliminar
+                        </a>
+                        <button type="submit" class="btn btn-sm btn-primary" title="Guardar">
+                           <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+                           &nbsp; Guardar
+                        </button>
+                        {/if}
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </form>
+
+         <div class="visible-print-block">
+            <div class="container " id="imprimir_ficha_tecnica_vieja">
+               <div class="row">
+                  <h3>
+                     <div class="col-xs-12">
+                        <span>Ficha t&eacute;cnica del vehículo</span>
+                     </div>
+                  </h3>
+               </div>
+               <div class="row">
+                  &nbsp;
+               </div>
+               <div class="row">
+                  <div class="col-xs-12">
+                     <div class="form-group form-group-sm">
+                        <strong>Cliente:</strong> {$fsc->cliente->get($fsc->editar_vehiculo->codcliente)->nombre}
+                     </div>
+                  </div>
+               </div>
+               <small>
+                  <div class="row">
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>Matrícula:</strong>
+                           <br/> {$fsc->editar_vehiculo->matricula}
+                        </div>
+                     </div>
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>Número de bastidor:</strong>
+                           <br/> {$fsc->editar_vehiculo->bastidor}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>Marca:</strong>
+                           <br/> {$fsc->marca_vehiculo->get($fsc->editar_vehiculo->marca)->nombre}
+                        </div>
+                     </div>
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>Clase:</strong>
+                           <br/> {$fsc->editar_vehiculo->clase}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>Tipo:</strong>
+                           <br/> {$fsc->editar_vehiculo->tipo}
+                        </div>
+                     </div>
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>Altura total (mm):</strong>
+                           <br/> {$fsc->editar_vehiculo->altura_total}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>Variante:</strong>
+                           <br/> {$fsc->editar_vehiculo->variante}
+                        </div>
+                     </div>
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>Anchura total (mm):</strong>
+                           <br/> {$fsc->editar_vehiculo->anchura_total}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>Denominación comercial:</strong>
+                           <br/> {$fsc->modelo_vehiculo->get($fsc->editar_vehiculo->denominacion_comercial)->nombre}
+                        </div>
+                     </div>
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>Vía anterior/posterior (mm):</strong>
+                           <br/> {$fsc->editar_vehiculo->via_anterior}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>Tara (kg):</strong>
+                           <br/> {$fsc->editar_vehiculo->tara}
+                        </div>
+                     </div>
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>Longitud total (mm):</strong>
+                           <br/> {$fsc->editar_vehiculo->longitud}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>MTMA/MMA (kg):</strong>
+                           <br/> {$fsc->editar_vehiculo->mtma}
+                        </div>
+                     </div>
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>Voladizo posterior (mm):</strong>
+                           <br/> {$fsc->editar_vehiculo->voladizo_posterior}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>MTMA/MMA 1º E (kg):</strong>
+                           <br/> {$fsc->editar_vehiculo->mtma1e}
+                        </div>
+                     </div>
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>Distancia eje 1º/2º (mm):</strong>
+                           <br/> {$fsc->editar_vehiculo->distancia_eje_1_2}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>MTMA/MMA 2º E (kg):</strong>
+                           <br/> {$fsc->editar_vehiculo->mtma2e}
+                        </div>
+                     </div>
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>Distancia eje 2º/3º (mm):</strong>
+                           <br/> {$fsc->editar_vehiculo->distancia_eje_2_3}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>MTMA/MMA 3º E (kg):</strong>
+                           <br/> {$fsc->editar_vehiculo->mtma3e}
+                        </div>
+                     </div>
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>Distancia eje 3º/4º (mm):</strong>
+                           <br/> {$fsc->editar_vehiculo->distancia_eje_3_4}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>MTMA/MMA 4º E(kg):</strong>
+                           <br/> {$fsc->editar_vehiculo->mtma4e}
+                        </div>
+                     </div>
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>Distancia 5ª rueda/últ. (mm):</strong>
+                           <br/> {$fsc->editar_vehiculo->distancia_5_rueda}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>MMR S/F. c/F (kg):</strong>
+                           <br/> {$fsc->editar_vehiculo->mmr}
+                        </div>
+                     </div>
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>Marca motor:</strong>
+                           <br/> {$fsc->editar_vehiculo->marca_motor}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>Neumáticos:</strong>
+                           <br/> {$fsc->editar_vehiculo->neumaticos}
+                        </div>
+                     </div>
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>Tipo motor:</strong>
+                           <br/> {$fsc->editar_vehiculo->tipo_motor}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>Nº de asientos:</strong>
+                           <br/> {$fsc->editar_vehiculo->n_asientos}
+                        </div>
+                     </div>
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>Nº Cilindros/Cilindrada (cm3):</strong>
+                           <br/> {$fsc->editar_vehiculo->cilindrada}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>Volumen de bodega:</strong>
+                           <br/> {$fsc->editar_vehiculo->volumen_bodega}
+                        </div>
+                     </div>
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>Potencia fiscal/real (C.V.F./kW):</strong>
+                           <br/> {$fsc->editar_vehiculo->potencia}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>Homologaciones incluidas:</strong>
+                           <br/> {$fsc->editar_vehiculo->homologaciones}
+                        </div>
+                     </div>
+                     <div class="col-xs-6">
+                        <div class="form-group form-group-sm">
+                           <strong>Fecha primera matriculación:</strong>
+                           <br/> {$fsc->editar_vehiculo->fecha_matriculacion}"
+                        </div>
+                     </div>
+                  </div>
+               </small>
+            </div>
+         </div>
+         {/if}
+      </div>
+
+      <div role="tabpanel" class='tab-pane{if condition="$fsc->query"} active{/if}' id="buscar">
+         {if condition="$fsc->query"}
+         <div class="table-responsive">
+            <table class="table table-hover">
+               <thead>
+                  <tr>
+                     <th class="text-left" width="100px">Matrícula</th>
+                     <th class="text-left">Propietario</th>
+                     <th class="text-left">Marca</th>
+                     <th class="text-left">Modelo</th>
+                     <th class="text-right">Fotografía</th>
+                  </tr>
+               </thead>
+               {loop="$fsc->search_list"}
+               <tr>
+                  <td class="text-left"><a href="{$fsc->url()}&id={$value->id}" title="Ver ficha del vehículo {$value->matricula}">{$value->matricula}</a></td>
+                  <td class="text-left"><a href="index.php?page=ventas_cliente&cod={$value->codcliente}" title="Ver documentos del cliente {$value->nombre_cliente}">{$value->nombre_cliente}</a></td>
+                  <td class="text-left">{$value->nombre_marca}</td>
+                  <td class="text-left">{$value->nombre_modelo}</td>
+                  <td class="text-right">
+                     <img src="{$value->imagen_modelo}" width="233px" heigth="150px" class="img-thumbnail" />
+                  </td>
+               </tr>
+               {/loop}
+            </table>
+         </div>
+         <div class="container-fluid">
+            <div class="row">
+               <div class="col-sm-12 text-center">
+                  <ul class="pagination">
+                     {loop="$fsc->paginas_busqueda()"}
+                     <li{if="$value['actual']"} class="active" {/if}>
+                        <a href="{$value['url']}">{$value['num']}</a>
+                        </li>
+                        {/loop}
+                  </ul>
+               </div>
+            </div>
+         </div>
+         {/if}
+      </div>
+
+      {if condition="in_array('presupuestos_y_pedidos',$GLOBALS['plugins'])"}
+      <div role="tabpanel" class="tab-pane" id="vehiculo_presupuestos">
+         <iframe src="index.php?page=tab_automocion_vehiculo_pre&id={$fsc->editar_vehiculo->id}" id="iframe_vehiculo_presupuestos" name="iframe_vehiculo_presupuestos" width="100%" scrolling="no" frameborder="0"></iframe>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="vehiculo_pedidos">
+         <iframe src="index.php?page=tab_automocion_vehiculo_ped&id={$fsc->editar_vehiculo->id}" id="iframe_vehiculo_pedidos" name="iframe_vehiculo_pedidos" width="100%" scrolling="no" frameborder="0"></iframe>
+      </div>
+      {/if}
+      {if condition="in_array('servicios',$GLOBALS['plugins'])"}
+      <div role="tabpanel" class="tab-pane" id="vehiculo_servicios">
+         <iframe src="index.php?page=tab_automocion_vehiculo_ser&id={$fsc->editar_vehiculo->id}" id="iframe_vehiculo_servicios" name="iframe_vehiculo_servicios" width="100%" scrolling="no" frameborder="0"></iframe>
+      </div>
+      {/if}
+      {if condition="in_array('facturacion_base',$GLOBALS['plugins'])"}
+      <div role="tabpanel" class="tab-pane" id="vehiculo_albaranes">
+         <iframe src="index.php?page=tab_automocion_vehiculo_alb&id={$fsc->editar_vehiculo->id}" id="iframe_vehiculo_albaranes" name="iframe_vehiculo_albaranes" width="100%" scrolling="no" frameborder="0"></iframe>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="vehiculo_facturas">
+         <iframe src="index.php?page=tab_automocion_vehiculo_fac&id={$fsc->editar_vehiculo->id}" id="iframe_vehiculo_facturas" name="iframe_vehiculo_facturas" width="100%" scrolling="no" frameborder="0"></iframe>
+      </div>
+      {/if}
+   </div>
+</div>
+{else}
+<div class="thumbnail">
+   <img src="view/img/fuuu_face.png" alt="fuuuuu"/>
+</div>
+{/if}
+{include="footer"}

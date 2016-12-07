@@ -1,0 +1,50 @@
+{include="header"}
+
+<h3 class="text-center">
+   Veh&iacute;culos de <a href="{$fsc->cliente->url()}">{$fsc->cliente->nombre}</a>
+</h3>
+
+<div class="table-responsive">
+   <table class="table table-hover">
+      <thead>
+         <tr>
+            <th class="text-left" width="100px">Matrícula</th>
+            <th class="text-left">Propietario</th>
+            <th class="text-left">Marca</th>
+            <th class="text-left">Modelo</th>
+            <th class="text-right">Fotografía</th>
+         </tr>
+      </thead>
+      {loop="$fsc->resultados"}
+      <tr>
+         <td class="text-left"><a href="index.php?page=automocion_vehiculo&id={$value->id}" title="Ver ficha del vehículo {$value->matricula}">{$value->matricula}</a></td>
+         <td class="text-left"><a href="index.php?page=ventas_cliente&cod={$value->codcliente}" title="Ver documentos del cliente {$value->nombre_cliente}">{$value->nombre_cliente}</a></td>
+         <td class="text-left">{$value->nombre_marca}</td>
+         <td class="text-left">{$value->nombre_modelo}</td>
+         <td class="text-right">
+            <img src="{$value->imagen_modelo}" width="233px" heigth="150px" class="img-thumbnail" />
+         </td>
+      </tr>
+      {/loop}
+   </table>
+</div>
+
+<ul class="pager">
+   {if condition="$fsc->anterior_url()!=''"}
+   <li class="previous">
+      <a href="{$fsc->anterior_url()}">
+         <span class="glyphicon glyphicon-chevron-left"></span> &nbsp; Anteriores
+      </a>
+   </li>
+   {/if}
+
+   {if condition="$fsc->siguiente_url()!=''"}
+   <li class="next">
+      <a href="{$fsc->siguiente_url()}">
+         Siguientes &nbsp; <span class="glyphicon glyphicon-chevron-right"></span>
+      </a>
+   </li>
+   {/if}
+</ul>
+
+{include="footer"}

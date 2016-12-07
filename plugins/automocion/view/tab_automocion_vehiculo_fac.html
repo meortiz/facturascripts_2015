@@ -1,0 +1,54 @@
+{include="header2"}
+
+<h3 class="text-center">
+   {$fsc->total} {#FS_FACTURAS#} relacionadas
+</h3>
+
+<div class="table-responsive">
+   <table class="table table-hover">
+      <thead>
+         <tr>
+            <th class="text-left">C&oacute;digo</th>
+            <th class="text-left">Observaciones</th>
+            <th class="text-left">Total</th>
+            <th class="text-left">Fecha</th>
+            <th class="text-left">Hora</th>
+            <th class="text-left">Matr&iacute;cula</th>
+            <th class="text-right">Kilometraje</th>
+         </tr>
+      </thead>
+      {loop="$fsc->documentos"}
+      <tr class='clickableRow' href='{$value->url()}' target='_blank'>
+         <td>
+            <a href="{$value->url()}">{$value->codigo}</a> {$value->numero2}
+         </td>
+         <td>
+            {$value->observaciones}
+         </td>
+         <td>
+            {$value->total} {$fsc->simbolo_divisa()}
+         </td>
+         <td>
+            {$value->fecha}
+         </td>
+         <td>
+            {$value->hora}
+         </td>
+         <td>
+            {$fsc->vehiculos[$value->idfactura]->matricula}
+         </td>
+         <td class="text-right">
+            {$fsc->relacion[$value->idfactura][1]} Km.
+         </td>
+      </tr>
+      {else}
+      <tr  class="bg-warning">
+         <td colspan="7">
+            No se han encontrado ninguna {#FS_FACTURA#}.
+         </td>
+      </tr>
+      {/loop}
+   </table>
+</div>
+
+{include="footer2"}

@@ -1,0 +1,551 @@
+{include="header"}
+
+<script type="text/javascript">
+   function show_nuevo_vehiculo() {
+      $("#modal_nuevo_vehiculo").modal('show');
+      document.f_nuevo_vehiculo.nombre.focus();
+   }
+
+   $(document).ready(function() {
+      $("#edit_ac_proveedor").autocomplete({
+         serviceUrl: '{$fsc->url()}',
+         paramName: 'buscar_proveedor',
+         onSelect: function(suggestion) {
+            if (suggestion) {
+               if (document.f_editar_vehiculo.codproveedor.value != suggestion.data) {
+                  document.f_editar_vehiculo.codproveedor.value = suggestion.data;
+               }
+            }
+         }
+      });
+      $("#new_ac_proveedor").autocomplete({
+         serviceUrl: '{$fsc->url()}',
+         paramName: 'buscar_proveedor',
+         onSelect: function(suggestion) {
+            if (suggestion) {
+               if (document.f_nuevo_vehiculo.codproveedor.value != suggestion.data) {
+                  document.f_nuevo_vehiculo.codproveedor.value = suggestion.data;
+               }
+            }
+         }
+      });
+      $("#edit_ac_marca").autocomplete({
+         serviceUrl: '{$fsc->url()}',
+         paramName: 'buscar_marca_vehiculo',
+         onSelect: function(suggestion) {
+            if (suggestion) {
+               if (document.f_editar_vehiculo.marca.value != suggestion.data) {
+                  document.f_editar_vehiculo.marca.value = suggestion.data;
+                  updateEditAcMarca();
+               }
+            }
+         }
+      });
+      $("#new_ac_marca").autocomplete({
+         serviceUrl: '{$fsc->url()}',
+         paramName: 'buscar_marca_vehiculo',
+         onSelect: function(suggestion) {
+            if (suggestion) {
+               if (document.f_nuevo_vehiculo.marca.value != suggestion.data) {
+                  document.f_nuevo_vehiculo.marca.value = suggestion.data;
+                  updateNewAcDenominacionComercial();
+               }
+            }
+         }
+      });
+
+      function updateEditAcMarca() {
+         var newUrl = '{$fsc->url()}&marca_vehiculo=' + document.f_editar_vehiculo.marca.value;
+         $("#edit_ac_denominacion_comercial").autocomplete("option", "source", newUrl);
+      }
+      $("#edit_ac_marca").on('change', updateEditAcMarca);
+      $("#edit_ac_denominacion_comercial").autocomplete({
+         serviceUrl: '{$fsc->url()}',
+         paramName: 'buscar_modelo_vehiculo',
+         onSelect: function(suggestion) {
+            if (suggestion) {
+               if (document.f_editar_vehiculo.denominacion_comercial.value != suggestion.data) {
+                  document.f_editar_vehiculo.denominacion_comercial.value = suggestion.data;
+                  updateEditAcMarca();
+               }
+            }
+         }
+      });
+
+      function updateNewAcDenominacionComercial() {
+         var newUrl = '{$fsc->url()}&marca_vehiculo=' + document.f_nuevo_vehiculo.marca.value;
+         $("#new_ac_denominacion_comercial").autocomplete().setOptions({
+            "serviceUrl": newUrl
+         });
+      }
+      $("#new_ac_marca").on('change', updateNewAcDenominacionComercial);
+      $("#new_ac_denominacion_comercial").autocomplete({
+         serviceUrl: '{$fsc->url()}',
+         paramName: 'buscar_modelo_vehiculo',
+         onSelect: function(suggestion) {
+            if (suggestion) {
+               if (document.f_nuevo_vehiculo.denominacion_comercial.value != suggestion.data) {
+                  document.f_nuevo_vehiculo.denominacion_comercial.value = suggestion.data;
+               }
+            }
+         }
+      });
+
+      $("#b_nuevo_vehiculo").click(function(event) {
+         event.preventDefault();
+         show_nuevo_vehiculo();
+      });
+
+      /* Validación de formulario */
+      $("#f_nuevo_vehiculo").validate({
+         rules: {
+            new_ac_proveedor: {
+               required: true
+            },
+            matricula: {
+               required: true
+            },
+            new_ac_marca: {
+               required: true
+            },
+            new_ac_denominacion_comercial: {
+               required: true
+            }
+         },
+         messages: {
+            new_ac_proveedor: {
+               required: "El campo es obligatorio.",
+            },
+            matricula: {
+               required: "El campo es obligatorio.",
+            },
+            new_ac_marca: {
+               required: "El campo es obligatorio.",
+            },
+            new_ac_denominacion_comercial: {
+               required: "El campo es obligatorio.",
+            },
+         }
+      });
+      /* Validación de formulario */
+      $("#f_editar_vehiculo").validate({
+         rules: {
+            new_ac_proveedor: {
+               required: true
+            },
+            matricula: {
+               required: true
+            },
+            new_ac_marca: {
+               required: true
+            },
+            new_ac_denominacion_comercial: {
+               required: true
+            }
+         },
+         messages: {
+            edit_ac_proveedor: {
+               required: "El campo es obligatorio.",
+            },
+            matricula: {
+               required: "El campo es obligatorio.",
+            },
+            edit_ac_marca: {
+               required: "El campo es obligatorio.",
+            },
+            edit_ac_denominacion_comercial: {
+               required: "El campo es obligatorio.",
+            },
+         }
+      });
+   });
+
+   function printDiv(divID) {
+      /* Gracias a: http://sarwarhossain.com/2010/10/05/print-a-div-open-new-window-print-and-close-using-javascirpt/ */
+      var contents = document.getElementById(divID).innerHTML;
+      var codeHTML = '<!DOCTYPE html><html><head><title>Imprimir p&aacute;gina</title><link rel="stylesheet" href="view/css/bootstrap-yeti.min.css" /></head><body onLoad="self.print()">' + contents + '</body></html>';
+
+      var newWindowObject = window.open("", "Imprimir p&aacute;gina");
+      newWindowObject.document.writeln(codeHTML);
+      newWindowObject.document.close();
+      newWindowObject.focus();
+   }
+</script>
+
+<div class="container-fluid" style="margin-top: 10px;">
+   <div class="row">
+      <div class="col-sm-4 col-xs-2">
+         <div class="btn-group hidden-xs">
+            <a class="btn btn-sm btn-default" href="{$fsc->url()}" title="Recargar la página">
+               <span class="glyphicon glyphicon-refresh"></span>
+            </a>
+            {if condition="$fsc->page->is_default()"}
+            <a class="btn btn-sm btn-default active" href="{$fsc->url()}&amp;default_page=FALSE" title="Desmarcar como página de inicio">
+               <span class="glyphicon glyphicon-home"></span>
+            </a>
+            {else}
+            <a class="btn btn-sm btn-default" href="{$fsc->url()}&amp;default_page=TRUE" title="Marcar como página de inicio">
+               <span class="glyphicon glyphicon-home"></span>
+            </a>
+            {/if}
+         </div>
+         <div class="btn-group">
+            <a href="#" id="b_nuevo_vehiculo" class="btn btn-sm btn-success">
+               <span class="glyphicon glyphicon-plus"></span>
+               <span class="hidden-xs">&nbsp; Nuevo</span>
+            </a>
+         </div>
+      </div>
+      <div class="col-sm-5 col-xs-10 text-right">
+         <h2 style="margin-top: 0px;">Vehículos de la empresa</h2>
+      </div>
+      <div class="col-sm-3 col-xs-12">
+         <form name="f_custom_search" action="{$fsc->url()}" method="post" class="form">
+            <div class="input-group">
+               <input class="form-control input-sm" type="text" name="query" value="{$fsc->query}" autocomplete="off" placeholder="Buscar matrícula">
+               <span class="input-group-btn">
+                  <button class="btn btn-primary hidden-sm" type="submit">
+                     <span class="glyphicon glyphicon-search"></span>
+                  </button>
+               </span>
+            </div>
+         </form>
+         <div class="visible-xs">
+            <br/>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div role="tabpanel">
+   <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" {if condition="!$fsc->editar_vehiculo AND !$fsc->query"} class="active" {/if}>
+         <a href="#listado" aria-controls="listado" role="tab" data-toggle="tab" title="Listado">
+            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+            <span class="hidden-xs"> &nbsp; Todos los vehículos</span>
+            <span class="badge">{$fsc->count()}</span>
+         </a>
+      </li>
+      {if condition="$fsc->query"}
+      <li role="search" {if condition="$fsc->query"} class="active" {/if}>
+         <a href="#buscar" aria-controls="buscar" role="tab" data-toggle="tab" title="Buscar">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            <span class="hidden-xs"> &nbsp; Resultados para '{$fsc->query}'</span>
+            <span class="badge">{$fsc->count_search_list}</span>
+         </a>
+      </li>
+      {/if}
+   </ul>
+
+   <div class="tab-content">
+
+      <div role="tabpanel" class='tab-pane{if condition="!$fsc->editar_vehiculo AND !$fsc->query"} active{/if}' id="listado">
+         <div class="table-responsive">
+            <table class="table table-hover">
+               <thead>
+                  <tr>
+                     <th class="text-left" width="100px">Matrícula</th>
+                     <th class="text-left">Marca</th>
+                     <th class="text-left">Modelo</th>
+                     <th class="text-right">Fotografía</th>
+                  </tr>
+               </thead>
+               {loop="$fsc->listado"}
+               <tr class='clickableRow' href='index.php?page=automocion_vehiculo_prov&id={$value->id}'>
+                  <td class="text-left"><a href="index.php?page=automocion_vehiculo_prov&id={$value->id}" title="Ver ficha del vehículo {$value->matricula}">{$value->matricula}</a></td>
+                  <td class="text-left">{$value->nombre_marca}</td>
+                  <td class="text-left">{$value->nombre_modelo}</td>
+                  <td class="text-right">
+                     <img src="{$value->imagen_modelo}" width="233px" heigth="150px" class="img-thumbnail" />
+                  </td>
+               </tr>
+               {/loop}
+            </table>
+         </div>
+         <div class="container-fluid">
+            <div class="row">
+               <div class="col-sm-12 text-center">
+                  <ul class="pagination">
+                     {loop="$fsc->paginas_todo()"}
+                     <li{if="$value['actual']"} class="active" {/if}>
+                        <a href="{$value['url']}">{$value['num']}</a>
+                        </li>
+                        {/loop}
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div role="tabpanel" class='tab-pane{if condition="$fsc->query"} active{/if}' id="buscar">
+         {if condition="$fsc->query"}
+         <div class="table-responsive">
+            <table class="table table-hover">
+               <thead>
+                  <tr>
+                     <th class="text-left" width="100px">Matrícula</th>
+                     <th class="text-left">Propietario</th>
+                     <th class="text-left">Marca</th>
+                     <th class="text-left">Modelo</th>
+                     <th class="text-right">Fotografía</th>
+                  </tr>
+               </thead>
+               {loop="$fsc->search_list"}
+               <tr class='clickableRow' href='index.php?page=automocion_vehiculo&id={$value->id}'>
+                  <td class="text-left"><a href="index.php?page=automocion_vehiculo&id={$value->id}" title="Ver ficha del vehículo {$value->matricula}">{$value->matricula}</a></td>
+                  <td class="text-left"><a href="index.php?page=ventas_proveedor&cod={$value->codproveedor}" title="Ver documentos del proveedor {$value->nombre_proveedor}">{$value->nombre_proveedor}</a></td>
+                  <td class="text-left">{$value->nombre_marca}</td>
+                  <td class="text-left">{$value->nombre_modelo}</td>
+                  <td class="text-right">
+                     <img src="{$value->imagen_modelo}" width="233px" heigth="150px" class="img-thumbnail" />
+                  </td>
+               </tr>
+               {/loop}
+            </table>
+         </div>
+         <div class="container-fluid">
+            <div class="row">
+               <div class="col-sm-12 text-center">
+                  <ul class="pagination">
+                     {loop="$fsc->paginas_busqueda()"}
+                     <li{if="$value['actual']"} class="active" {/if}>
+                        <a href="{$value['url']}">{$value['num']}</a>
+                        </li>
+                        {/loop}
+                  </ul>
+               </div>
+            </div>
+         </div>
+         {/if}
+      </div>
+
+   </div>
+</div>
+
+<form class="form-horizontal" name="f_nuevo_vehiculo" id="f_nuevo_vehiculo" action="{$fsc->url()}" role="form" method="post">
+   <div class="modal fade bs-example-modal-lg" id="modal_nuevo_vehiculo">
+      <div class="modal-dialog modal-lg">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+               <h4 class="modal-title">
+                  <i class="fa fa-car"></i> &nbsp; Nuevo vehículo
+               </h4>
+            </div>
+            <div class="modal-body">
+               <div class="row">
+                  <div class="form-group form-group-sm">
+                     <label class="col-xs-2 control-label">Proveedor:</label>
+                     <div class="col-xs-10">
+                        <input type="hidden" name="codproveedor" id="codproveedor" />
+                        <input class="form-control input-sm" type="text" name="new_ac_proveedor" id="new_ac_proveedor" placeholder="Buscar" autocomplete="off" autofocus />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="form-group form-group-sm">
+                     <label class="col-xs-2 control-label">Matrícula:</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="text" name="matricula" />
+                     </div>
+                     <label class="col-xs-2 control-label">Número de bastidor<br/>[E]:</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="text" name="bastidor" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="form-group form-group-sm">
+                     <label class="col-xs-2 control-label">Marca<br/>[D.1]:</label>
+                     <div class="col-xs-4">
+                        <input type="hidden" type="number" name="marca" id="marca" />
+                        <input class="form-control input-sm" type="text" name="new_ac_marca" id="new_ac_marca" placeholder="Buscar" autocomplete="off" autofocus />
+                     </div>
+                     <label class="col-xs-2 control-label">Clase<br/>[C.L]:</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="text" name="clase" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="form-group form-group-sm">
+                     <label class="col-xs-2 control-label">Tipo<br/>[D.2/1]:</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="text" name="tipo" />
+                     </div>
+                     <label class="col-xs-2 control-label">Altura total (mm)<br/>[F.4]:</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="number" name="altura_total" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="form-group form-group-sm">
+                     <label class="col-xs-2 control-label">Variante (D.2/2):</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="text" name="variante" />
+                     </div>
+                     <label class="col-xs-2 control-label">Anchura total (mm)<br/>[F.5]:</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="number" name="anchura_total" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="form-group form-group-sm">
+                     <label class="col-xs-2 control-label">Denominación comercial<br/>[D.3]:</label>
+                     <div class="col-xs-4">
+                        <input type="hidden" type="number" name="denominacion_comercial" id="denominacion_comercial" />
+                        <input class="form-control input-sm" type="text" name="new_ac_denominacion_comercial" id="new_ac_denominacion_comercial" placeholder="Buscar" autocomplete="off" autofocus />
+                     </div>
+                     <label class="col-xs-2 control-label">Vía anterior/posterior (mm)<br/>[F.7 y F.7.1]:</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="number" name="via_anterior" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="form-group form-group-sm">
+                     <label class="col-xs-2 control-label">Tara (kg):</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="number" name="tara" />
+                     </div>
+                     <label class="col-xs-2 control-label">Longitud total (mm)<br/>[F.6]:</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="number" name="longitud" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="form-group form-group-sm">
+                     <label class="col-xs-2 control-label">MTMA/MMA (kg)<br/>[F.1 y F.2]:</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="number" name="mtma" />
+                     </div>
+                     <label class="col-xs-2 control-label">Voladizo posterior (mm)<br/>[F.8]:</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="number" name="voladizo_posterior" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="form-group form-group-sm">
+                     <label class="col-xs-2 control-label">MTMA/MMA 1º E (kg)<br/>[F.1.1/1]:</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="number" name="mtma1e" />
+                     </div>
+                     <label class="col-xs-2 control-label">Distancia eje 1º/2º (mm)<br/>[M.1/1]:</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="number" name="distancia_eje_1_2" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="form-group form-group-sm">
+                     <label class="col-xs-2 control-label">MTMA/MMA 2º E (kg)<br/>[F.1.1/2]:</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="number" name="mtma2e" />
+                     </div>
+                     <label class="col-xs-2 control-label">Distancia eje 2º/3º (mm)<br/>[M.1/2]:</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="number" name="distancia_eje_2_3" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="form-group form-group-sm">
+                     <label class="col-xs-2 control-label">MTMA/MMA 3º E (kg)<br/>[F.1.1/3]:</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="number" name="mtma3e" />
+                     </div>
+                     <label class="col-xs-2 control-label">Distancia eje 3º/4º (mm):</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="number" name="distancia_eje_3_4" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="form-group form-group-sm">
+                     <label class="col-xs-2 control-label">MTMA/MMA 4º E(kg)<br/>[F.1.1/4]:</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="number" name="mtma4e" />
+                     </div>
+                     <label class="col-xs-2 control-label">Distancia 5ª rueda/últ. (mm)<br/>[M.4]:</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="number" name="distancia_5_rueda" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="form-group form-group-sm">
+                     <label class="col-xs-2 control-label">MMR S/F. c/F (kg):</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="number" name="mmr" />
+                     </div>
+                     <label class="col-xs-2 control-label">Marca motor<br/>[P.5.1]:</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="text" name="marca_motor" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="form-group form-group-sm">
+                     <label class="col-xs-2 control-label">Neumáticos<br/>[L.2]:</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="text" name="neumaticos" />
+                     </div>
+                     <label class="col-xs-2 control-label">Tipo motor<br/>[P.5]:</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="text" name="tipo_motor" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="form-group form-group-sm">
+                     <label class="col-xs-2 control-label">Nº de asientos<br/>[S.1]:</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="number" name="n_asientos" />
+                     </div>
+                     <label class="col-xs-2 control-label">Nº Cilindros/Cilindrada (cm3)<br/>[P.1.1 y P.1]:</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="text" name="cilindrada" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="form-group form-group-sm">
+                     <label class="col-xs-2 control-label">Volumen de bodega<br/>[J.3]:</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="number" name="volumen_bodega" />
+                     </div>
+                     <label class="col-xs-2 control-label">Potencia fiscal/real (C.V.F./kW)<br/>[P.2.1 y P.2]:</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm" type="text" name="potencia" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="form-group form-group-sm">
+                     <label class="col-xs-2 control-label">Homologaciones incluidas:</label>
+                     <div class="col-xs-4">
+                        <textarea class="form-control input-sm" rows="3" name="homologaciones"></textarea>
+                     </div>
+                     <label class="col-xs-2 control-label">Fecha primera matriculación:</label>
+                     <div class="col-xs-4">
+                        <input class="form-control input-sm datepicker" type="text" name="fecha_matriculacion" value="{$fsc->today()}" />
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button type="submit" class="btn btn-sm btn-primary" title="Guardar">
+                  <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+                  <span class="hidden-xs"> &nbsp; Guardar</span>
+               </button>
+            </div>
+         </div>
+      </div>
+   </div>
+</form>
+
+{include="footer"}

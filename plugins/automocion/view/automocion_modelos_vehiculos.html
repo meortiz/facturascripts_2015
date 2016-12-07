@@ -1,0 +1,326 @@
+{include="header"}
+
+<script type="text/javascript">
+   function show_nuevo_modelo() {
+      $("#modal_nuevo_modelo").modal('show');
+      document.f_nuevo_modelo.nombre.focus();
+   }
+
+   $(document).ready(function() {
+      $("#edit_ac_marca").autocomplete({
+         serviceUrl: '{$fsc->url()}',
+         paramName: 'buscar_marca_vehiculo',
+         onSelect: function(suggestion) {
+            if (suggestion) {
+               if (document.f_editar_modelo.id_marca.value != suggestion.data) {
+                  document.f_editar_modelo.id_marca.value = suggestion.data;
+               }
+            }
+         }
+      });
+      $("#new_ac_marca").autocomplete({
+         serviceUrl: '{$fsc->url()}',
+         paramName: 'buscar_marca_vehiculo',
+         onSelect: function(suggestion) {
+            if (suggestion) {
+               if (document.f_nuevo_modelo.id_marca.value != suggestion.data) {
+                  document.f_nuevo_modelo.id_marca.value = suggestion.data;
+               }
+            }
+         }
+      });
+      $("#b_nuevo_modelo").click(function(event) {
+         event.preventDefault();
+         show_nuevo_modelo();
+      });
+
+   /* Validación de formulario */
+      $("#f_nuevo_modelo").validate({
+         rules: {
+            new_ac_marca: { required: true},
+            nombre: { required: true}
+         },
+         messages: {
+            new_ac_marca: {
+               required: "El campo es obligatorio.",
+            },
+            nombre: {
+               required: "El campo es obligatorio.",
+            },
+         }
+      });
+   /* Validación de formulario */
+      $("#f_editar_modelo").validate({
+         rules: {
+            edit_ac_marca: { required: true},
+            nombre: { required: true}
+         },
+         messages: {
+            edit_ac_marca: {
+               required: "El campo es obligatorio.",
+            },
+            nombre: {
+               required: "El campo es obligatorio.",
+            },
+         }
+      });
+   });
+</script>
+
+<div class="container-fluid" style="margin-top: 10px;">
+   <div class="row">
+      <div class="col-sm-4 col-xs-2">
+         <div class="btn-group hidden-xs">
+            <a class="btn btn-sm btn-default" href="{$fsc->url()}" title="Recargar la página">
+               <span class="glyphicon glyphicon-refresh"></span>
+            </a>
+            {if condition="$fsc->page->is_default()"}
+            <a class="btn btn-sm btn-default active" href="{$fsc->url()}&amp;default_page=FALSE" title="Desmarcar como página de inicio">
+               <span class="glyphicon glyphicon-home"></span>
+            </a>
+            {else}
+            <a class="btn btn-sm btn-default" href="{$fsc->url()}&amp;default_page=TRUE" title="Marcar como página de inicio">
+               <span class="glyphicon glyphicon-home"></span>
+            </a>
+            {/if}
+         </div>
+         <div class="btn-group">
+            <a href="#" id="b_nuevo_modelo" class="btn btn-sm btn-success">
+               <span class="glyphicon glyphicon-plus"></span>
+               <span class="hidden-xs">&nbsp; Nuevo</span>
+            </a>
+         </div>
+      </div>
+      <div class="col-sm-5 col-xs-10 text-right">
+         <h2 style="margin-top: 0px;">Modelos</h2>
+      </div>
+      <div class="col-sm-3 col-xs-12">
+         <form name="f_custom_search" action="{$fsc->url()}" method="post" class="form">
+            <div class="input-group">
+               <input class="form-control" type="text" name="query" value="{$fsc->query}" autocomplete="off" placeholder="Buscar modelo">
+               <span class="input-group-btn">
+                  <button class="btn btn-primary hidden-sm" type="submit">
+                     <span class="glyphicon glyphicon-search"></span>
+                  </button>
+               </span>
+            </div>
+         </form>
+         <div class="visible-xs"><br/></div>
+      </div>
+   </div>
+</div>
+
+<div role="tabpanel">
+   <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" {if condition="!$fsc->editar_modelo_vehiculo AND !$fsc->query"} class="active" {/if}>
+         <a href="#listado" aria-controls="listado" role="tab" data-toggle="tab" title="Listado">
+            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+            <span class="hidden-xs"> &nbsp; Todos los modelos </span>
+            <span class="badge">{$fsc->count()}</span>
+         </a>
+      </li>
+      {if condition="$fsc->query"}
+      <li role="search" {if condition="$fsc->query"} class="active" {/if}>
+         <a href="#buscar" aria-controls="buscar" role="tab" data-toggle="tab" title="Buscar">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            <span class="hidden-xs"> &nbsp; Resultados para '{$fsc->query}'</span>
+            <span class="badge">{$fsc->count_search_list}</span>
+         </a>
+      </li>
+      {/if}
+      {if condition="$fsc->editar_modelo_vehiculo"}
+      <li role="presentation" class="active">
+         <a href="#editar" aria-controls="editar" role="tab" data-toggle="tab" title="Editar">
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+            <span class="hidden-xs"> &nbsp; Editar</span>
+         </a>
+      </li>
+      {/if}
+   </ul>
+
+   <div class="tab-content">
+
+      <div role="tabpanel" class='tab-pane{if condition="!$fsc->editar_modelo_vehiculo AND !$fsc->query"} active{/if}' id="listado">
+         <div class="table-responsive">
+            <table class="table table-hover">
+               <thead>
+                  <tr>
+                     <th class="text-left">Marca</th>
+                     <th class="text-left">Modelo</th>
+                     <th class="text-left">Imagen</th>
+                  </tr>
+               </thead>
+               {loop="$fsc->listado"}
+               <tr class='clickableRow' href='{$fsc->url()}&id={$value->id_marca}'>
+                  <td class="text-left">
+                     <a href="index.php?page=marcas_vehiculos&id={$value->id_marca}" title="Ver ficha del vehículo {$value->marca}">{$value->marca}</a>
+                  </td>
+                  <td class="text-left">
+                     <a href="{$fsc->url()}&id={$value->id}" title="Ver ficha del modelo {$value->nombre}">{$value->nombre}</a>
+                  </td>
+                  <td class="text-left">
+                     <img src="{$value->imagen}" width="233px" heigth="150px" class="img-thumbnail" />
+                  </td>
+               </tr>
+               {/loop}
+            </table>
+         </div>
+         <div class="container-fluid">
+            <div class="row">
+               <div class="col-sm-12 text-center">
+                  <ul class="pagination">
+                     {loop="$fsc->paginas_todo()"}
+                     <li{if="$value['actual']"} class="active"{/if}>
+                        <a href="{$value['url']}">{$value['num']}</a>
+                     </li>
+                     {/loop}
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div role="tabpanel" class='tab-pane{if condition="$fsc->editar_modelo_vehiculo"} active{/if}' id="editar">
+         {if condition="$fsc->editar_modelo_vehiculo"}
+         <form name="f_editar_modelo" id="f_editar_modelo" class="form" action="{$fsc->url()}" role="form" method="post">
+            <input type="hidden" name="id" value="{$fsc->editar_modelo_vehiculo->id}" />
+            <div class="container" style="margin-top: 10px;">
+               <div class="row">
+                  <div class="col-lg-12 col-md-12 text-center">
+                     <h3>Editando modelo de vehículo de fabricante</h3>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-lg-4 col-md-4">
+                     <div class="form-group">
+                        Fabricante:
+                        <input type="hidden" name="id_marca" value="{$fsc->editar_modelo_vehiculo->id_marca}" />
+                        <input class="form-control" type="text" name="edit_ac_marca" id="edit_ac_marca" placeholder="Buscar" autocomplete="off" value="{$fsc->marca_vehiculo->get($fsc->editar_modelo_vehiculo->id_marca)->nombre}" autofocus />
+                     </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4">
+                     <div class="form-group">
+                        Modelo:
+                        <input class="form-control" type="text" name="nombre" value="{$fsc->editar_modelo_vehiculo->nombre}" />
+                     </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4">
+                     <div class="form-group">
+                        Imagen:
+                        <input class="form-control" type="text" name="imagen" value="{$fsc->editar_modelo_vehiculo->imagen}" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-lg-12 col-md-12">
+                     <div class="text-right">
+                        <a href="{$fsc->url()}&delete={$fsc->editar_modelo_vehiculo->id}" class="btn btn-sm btn-danger" title="Eliminar">
+                           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                           &nbsp; Eliminar
+                        </a>
+                        <button type="submit" class="btn btn-sm btn-primary" title="Guardar">
+                           <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+                           &nbsp; Guardar
+                        </button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </form>
+         {/if}
+      </div>
+
+      <div role="tabpanel" class='tab-pane{if condition="$fsc->query"} active{/if}' id="buscar">
+         {if condition="$fsc->query"}
+            <div class="table-responsive">
+               <table class="table table-hover">
+                  <thead>
+                     <tr>
+                        <th class="text-left">Marca</th>
+                        <th class="text-left">Modelo</th>
+                        <th class="text-left">Imagen</th>
+                     </tr>
+                  </thead>
+                  {loop="$fsc->search_list"}
+                  <tr class='clickableRow' href='{$fsc->url()}&id={$value->id}'>
+                     <td class="text-left">
+                        <a href="index.php?page=marcas_vehiculos&id={$value->id_marca}" title="Ver ficha del vehículo {$value->marca}">{$value->marca}</a>
+                     </td>
+                     <td class="text-left">
+                        <a href="{$fsc->url()}&id={$value->id}" title="Ver ficha del modelo {$value->nombre}">{$value->nombre}</a>
+                     </td>
+                     <td class="text-left">
+                        <img src="{$value->imagen}" width="233px" heigth="150px" class="img-thumbnail" />
+                     </td>
+                  </tr>
+                  {/loop}
+               </table>
+            </div>
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-xs-12 text-center">
+                     <ul class="pagination">
+                        {loop="$fsc->paginas_busqueda()"}
+                        <li{if="$value['actual']"} class="active"{/if}>
+                           <a href="{$value['url']}">{$value['num']}</a>
+                        </li>
+                        {/loop}
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         {/if}
+      </div>
+
+   </div>
+</div>
+
+<form class="form-horizontal" name="f_nuevo_modelo" id="f_nuevo_modelo" action="{$fsc->url()}" role="form" method="post">
+   <div class="modal fade bs-example-modal-lg" id="modal_nuevo_modelo">
+      <div class="modal-dialog modal-lg">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+               <h4 class="modal-title">
+                  <i class="fa fa-car"></i> &nbsp; Nuevo modelo
+               </h4>
+            </div>
+            <div class="modal-body">
+               <div class="row">
+                  <div class="form-group">
+                     <label class="col-md-2 control-label">Marca:</label>
+                     <div class="col-md-10">
+                        <input type="hidden" name="id_marca" />
+                        <input class="form-control" type="text" name="new_ac_marca" id="new_ac_marca" placeholder="Buscar" autocomplete="off" autofocus />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="form-group">
+                     <label class="col-md-2 control-label">Modelo:</label>
+                     <div class="col-md-10">
+                        <input class="form-control" type="text" name="nombre" />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="form-group">
+                     <label class="col-md-2 control-label">Imagen:</label>
+                     <div class="col-md-10">
+                        <input class="form-control" type="text" name="imagen" />
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button type="submit" class="btn btn-sm btn-primary" title="Guardar">
+                  <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+                  <span class="hidden-xs"> &nbsp; Guardar</span>
+               </button>
+            </div>
+         </div>
+      </div>
+   </div>
+</form>
+
+{include="footer"}

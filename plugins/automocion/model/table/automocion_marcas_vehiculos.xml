@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : automocion_marcas_vehiculos.xml
+    Description:
+        Estructura de la tabla automocion_marcas_vehiculos.
+-->
+<tabla>
+   <columna>
+      <nombre>id</nombre>
+      <tipo>serial</tipo>
+      <nulo>NO</nulo>
+      <defecto>nextval('automocion_marcas_vehiculos_id_seq'::regclass)</defecto>
+   </columna>
+   <columna>
+      <nombre>nombre</nombre>
+      <tipo>varchar(50)</tipo>
+      <nulo>NO</nulo>
+   </columna>
+   <columna>
+      <nombre>imagen</nombre>
+      <tipo>text</tipo>
+      <nulo>YES</nulo>
+   </columna>
+   <restriccion>
+      <nombre>automocion_marcas_vehiculos_pkey</nombre>
+      <consulta>PRIMARY KEY (id)</consulta>
+   </restriccion>
+</tabla>

@@ -1,0 +1,60 @@
+{include="header2"}
+
+{if condition="in_array('presupuestos_y_pedidos',$GLOBALS['plugins'])"}
+<h3 class="text-center">
+   {$fsc->total} {#FS_PRESUPUESTOS#} relacionados
+</h3>
+
+<div class="table-responsive">
+   <table class="table table-hover">
+      <thead>
+         <tr>
+            <th class="text-left">C&oacute;digo</th>
+            <th class="text-left">Observaciones</th>
+            <th class="text-left">Total</th>
+            <th class="text-left">Fecha</th>
+            <th class="text-left">Hora</th>
+            <th class="text-left">Matr&iacute;cula</th>
+            <th class="text-right">Kilometraje</th>
+         </tr>
+      </thead>
+      {loop="$fsc->documentos"}
+      <tr class='clickableRow' href='{$value->url()}' target='_blank'>
+         <td>
+            <a href="{$value->url()}">{$value->codigo}</a> {$value->numero2}
+         </td>
+         <td>
+            {$value->observaciones}
+         </td>
+         <td>
+            {$value->total} {$fsc->simbolo_divisa()}
+         </td>
+         <td>
+            {$value->fecha}
+         </td>
+         <td>
+            {$value->hora}
+         </td>
+         <td>
+            {$fsc->vehiculos[$value->idpresupuesto]->matricula}
+         </td>
+         <td class="text-right">
+            {$fsc->relacion[$value->idpresupuesto][1]} Km.
+         </td>
+      </tr>
+      {else}
+      <tr  class="bg-warning">
+         <td colspan="7">
+            No se han encontrado ninguna {#FS_PRESUPUESTO#}.
+         </td>
+      </tr>
+      {/loop}
+   </table>
+</div>
+{else}
+<div class="container-fluid">
+    Necesitas instalar y activar el plugin Presupuestos y pedidos para utilizar esta funcionalidad
+</div>
+{/if}
+
+{include="footer2"}

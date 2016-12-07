@@ -1,0 +1,147 @@
+{include="header2"}
+
+<script type="text/javascript">
+    function eliminar_vehiculo(id, iddoc) {
+    if (confirm("¿Realmente quieres eliminar el vehiculo asociado?"))
+        window.location.href = '{$fsc->url()}&delete=' + id + '{if="$fsc->idpedido"}&pedido=TRUE{/if}{if="$fsc->idalbaran"}&albaran=TRUE{/if}{if="$fsc->idfactura"}&factura=TRUE{/if}&id=' + iddoc;
+    }
+
+    $(document).ready(function() {
+
+        $("#search_matricula").autocomplete({
+            serviceUrl: '{$fsc->url()}',
+            paramName: 'buscar_matricula_vehiculo',
+            onSelect: function(suggestion) {
+                if (suggestion) {
+                    if (document.f_new_vehiculo.idvehiculo.value != suggestion.id) {
+                        document.f_new_vehiculo.idvehiculo.value = suggestion.id;
+                        document.f_new_vehiculo.marca.value = suggestion.marca;
+                        document.f_new_vehiculo.modelo.value = suggestion.modelo;
+                        document.f_new_vehiculo.bastidor.value = suggestion.bastidor;
+                    }
+                }
+            }
+        });
+        
+        {loop="$fsc->vehiculos"}
+        $("#search_matricula_{$value->id}").autocomplete({
+            serviceUrl: '{$fsc->url()}',
+            paramName: 'buscar_matricula_vehiculo',
+            onSelect: function(suggestion) {
+                if (suggestion) {
+                    if (document.f_edit_vehiculo_{$value->id}.idvehiculo_{$value->id}.value != suggestion.id) {
+                        document.f_edit_vehiculo_{$value->id}.idvehiculo_{$value->id}.value = suggestion.id;
+                        document.f_edit_vehiculo_{$value->id}.marca.value = suggestion.marca;
+                        document.f_edit_vehiculo_{$value->id}.modelo.value = suggestion.modelo;
+                        document.f_edit_vehiculo_{$value->id}.bastidor.value = suggestion.bastidor;
+                        }
+                    }
+                }
+            });
+        {/loop}
+        
+        $("[name='kilometraje']").on("keyup keypress blur change", function() {
+            if( $(this).val()=="" ) {
+                $(this).parent().parent().find("button").prop("disabled", true);
+            } else {
+                $(this).parent().parent().find("button").prop("disabled", false);
+            }
+        });
+    });
+</script>
+
+<h3 class="text-center">
+    Detalles del veh&iacute;culo en
+    {if="$fsc->idpedido"}{#FS_PEDIDO#} {$fsc->idpedido} {/if}
+    {if="$fsc->idalbaran"}{#FS_ALBARAN#} {$fsc->idalbaran} {/if}
+    {if="$fsc->idfactura"}{#FS_FACTURA#} {$fsc->idfactura} {/if}
+</h3>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="text-left">Matr&iacute;cula</th>
+                <th class="text-left">Marca</th>
+                <th class="text-left">Modelo</th>
+                <th class="text-left">Bastidor</th>
+                <th class="text-left">Kilometraje</th>
+                <th class="text-right">Acci&oacute;n</th>
+            </tr>
+        </thead>
+        {loop="$fsc->vehiculos"}
+        <form name="f_edit_vehiculo_{$value->id}" id="f_edit_vehiculo_{$value->id}" class="form" 
+              action='{$fsc->url()}{if="$fsc->idpedido"}&pedido=TRUE&id={$fsc->idpedido}{/if}{if="$fsc->idalbaran"}&albaran=TRUE&id={$fsc->idalbaran}{/if}{if="$fsc->idfactura"}&factura=TRUE&id={$fsc->idfactura}{/if}'
+              method="post">
+            <tr>
+                <td>
+                    {if="$fsc->idpedido"}<input type="hidden" name="idpedido" value="{$fsc->idpedido}" />{else}<input type="hidden" name="idpedido" value="" />{/if}
+                    {if="$fsc->idalbaran"}<input type="hidden" name="idalbaran" value="{$fsc->idalbaran}" />{else}<input type="hidden" name="idalbaran" value="" />{/if}
+                    {if="$fsc->idfactura"}<input type="hidden" name="idfactura" value="{$fsc->idfactura}" />{else}<input type="hidden" name="idfactura" value="" />{/if}
+                    <input type="hidden" name="idvehiculo_{$value->id}" />
+                    <input type="hidden" name="idvehiculo_editar" value="{$value->id}" />
+                    <input type="text" name="matricula" class="form-control input-sm" value="{$value->matricula}" autocomplete="off" name="search_matricula_{$value->id}" id="search_matricula_{$value->id}" placeholder="Buscar" autofocus />
+                </td>
+                <td>
+                    <input type="text" name="marca" class="form-control input-sm" value="{$fsc->marca->get($value->marca)->nombre}" autocomplete="off" />
+                </td>
+                <td>
+                    <input type="text" name="modelo" class="form-control input-sm" value="{$fsc->modelo->get($value->denominacion_comercial)->nombre}" autocomplete="off" />
+                </td>
+                <td>
+                    <input type="text" name="bastidor" class="form-control input-sm" value="{$value->bastidor}" autocomplete="off" />
+                </td>
+                <td>
+                    <input type="text" name="kilometraje" id="kilometraje" class="form-control input-sm" value="{$fsc->relacion[$value->id]}" autocomplete="off" />
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        {if="$fsc->allow_delete"}
+                        <a class="btn btn-sm btn-danger" title="Eliminar" onclick="eliminar_vehiculo('{$value->id}', '{if="$fsc->idpedido"}{$fsc->idpedido}{/if}{if="$fsc->idalbaran"}{$fsc->idalbaran}{/if}{if="$fsc->idfactura"}{$fsc->idfactura}{/if}')">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                        <button name="guardar" id="guardar" class="btn btn-sm btn-primary" type="submit" onclick="this.disabled = true; this.form.submit();" title="Guardar" disabled>
+                            <span class="glyphicon glyphicon-floppy-disk"></span>
+                        </button>
+                        {/if}
+                    </div>
+                </td>
+            </tr>
+        </form>
+        {/loop}
+        <form name="f_new_vehiculo" id="f_new_vehiculo" class="form" 
+              action='{$fsc->url()}{if="$fsc->idpedido"}&pedido=TRUE&id={$fsc->idpedido}{/if}{if="$fsc->idalbaran"}&albaran=TRUE&id={$fsc->idalbaran}{/if}{if="$fsc->idfactura"}&factura=TRUE&id={$fsc->idfactura}{/if}'
+              method="post">
+            <tr>
+                <td>
+                    {if="$fsc->idpedido"}<input type="hidden" name="idpedido" value="{$fsc->idpedido}" />{else}<input type="hidden" name="idpedido" value="" />{/if}
+                    {if="$fsc->idalbaran"}<input type="hidden" name="idalbaran" value="{$fsc->idalbaran}" />{else}<input type="hidden" name="idalbaran" value="" />{/if}
+                    {if="$fsc->idfactura"}<input type="hidden" name="idfactura" value="{$fsc->idfactura}" />{else}<input type="hidden" name="idfactura" value="" />{/if}
+                    <input type="hidden" name="idvehiculo" />
+                    <input type="text" name="matricula" class="form-control input-sm" value="" autocomplete="off" name="search_matricula" id="search_matricula" placeholder="Buscar" autofocus />
+                </td>
+                <td>
+                    <input type="text" name="marca" class="form-control input-sm" value="" autocomplete="off" />
+                </td>
+                <td>
+                    <input type="text" name="modelo" class="form-control input-sm" value="" autocomplete="off" />
+                </td>
+                <td>
+                    <input type="text" name="bastidor" class="form-control input-sm" value="" autocomplete="off" />
+                </td>
+                <td>
+                    <input type="text" name="kilometraje" id="kilometraje" class="form-control input-sm" value="" autocomplete="off" />
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button name="guardar" id="guardar" class="btn btn-sm btn-primary" type="submit" onclick="this.disabled = true; this.form.submit();" title="Guardar" disabled>
+                            <span class="glyphicon glyphicon-floppy-disk"></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </form>
+    </table>
+</div>
+
+{include="footer2"}

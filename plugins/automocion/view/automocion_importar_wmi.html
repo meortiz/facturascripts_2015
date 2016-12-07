@@ -1,0 +1,67 @@
+{include="header"}
+
+{if condition="$fsc->wmi"}
+{if condition="!$fsc->ready"}
+<script type="text/javascript">
+   var procesar = true;
+   var timeout = setTimeout("location.href = '{$fsc->url()}&action={$fsc->wmi_data->action}';", 1500);
+   $(document).ready(function () {
+      $("#b_pause_import").click(function (event) {
+         event.preventDefault();
+         if (procesar)
+         {
+            clearTimeout(timeout);
+            procesar = false;
+         }
+         else
+         {
+            timeout = setTimeout("location.href = '{$fsc->url()}&action={$fsc->wmi_data->action}';", 1500);
+            procesar = true;
+         }
+      });
+   });
+</script>
+{/if}
+
+{if condition="$fsc->wmi_data"}
+<div class="container-fluid">
+   <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+         <h1>
+            World Manufacturer Identifier
+         </h1>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-md-4">
+         <ul class="list-group">
+            {if condition="$fsc->wmi_data->no_nuevos"}
+            <li class="list-group-item">No añadir wmis nuevos.</li>
+            {/if}
+            {if condition="$fsc->wmi_data->bloquear"}
+            <li class="list-group-item">Bloquear wmis no actualizados.</li>
+            {/if}
+            <li class="list-group-item">Líneas: {$fsc->wmi_data->lineas}</li>
+         </ul>
+      </div>
+      <div class="col-md-4">
+         <ul class="list-group">
+            <li class="list-group-item">Nuevos: {$fsc->wmi_data->wmis_nuevos}</li>
+            <li class="list-group-item">Actualizados: {$fsc->wmi_data->wmis_actualizados}</li>
+            <li class="list-group-item">Sin modificar: {$fsc->wmi_data->wmis_sin_modificar}</li>
+         </ul>
+      </div>
+   </div>
+</div>
+{else}
+<div class="thumbnail">
+   <img src="view/img/fuuu_face.png" alt="fuuuuu" style="width:80%"/>
+</div>
+{/if}
+{else}
+<div class="thumbnail">
+   <img src="view/img/fuuu_face.png" alt="fuuuuu" style="width:80%"/>
+</div>
+{/if}
+
+{include="footer"}
