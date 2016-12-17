@@ -189,7 +189,7 @@ class dashboard extends fs_controller
       );
       $this->calcula_periodo($this->anyo);
       
-      $this->leer_noticias();
+      //$this->leer_noticias();
    }
    
    private function calcula_periodo(&$stats, $pendiente = FALSE)
