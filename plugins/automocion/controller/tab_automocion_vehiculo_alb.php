@@ -20,7 +20,7 @@
 require_model('vehiculo_documento.php');
 require_model('vehiculo.php');
 require_model('marca_vehiculo.php');
-require_model('modelo_vehiculo.php');
+//require_model('modelo_vehiculo.php');
 require_model('albaran_cliente.php');
 
 /**
