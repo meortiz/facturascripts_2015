@@ -508,7 +508,8 @@ class ventas_articulos extends fs_controller
          /// ¿Descargar o mostrar en pantalla?
          if( isset($_GET['download']) )
          {
-            $this->download_resultados($sql, $order);
+            $type = $_GET['download'];
+            $this->download_resultados($sql, $order, $type);
          }
          else
          {
@@ -556,13 +557,23 @@ class ventas_articulos extends fs_controller
       }
    }
    
-   private function download_resultados($sql, $order)
+   private function download_resultados($sql, $order, $type='csv')
    {
+      /// no descargar desde cli (interfaz de linea de comandos)
+      if (PHP_SAPI == 'cli') {
+         die('Este archivo solo se puede ver desde un navegador web');
+      }
       /// desactivamos el motor de plantillas
       $this->template = FALSE;
-      
+      if ($type == 'csv' || $type == '') {
+         $this->download_resultados_csv($sql, $order);
+      }
+   }
+
+   private function download_resultados_csv($sql, $order){
+      $filename = $this->get_filename_articulos();
       header("content-type:application/csv;charset=UTF-8");
-      header("Content-Disposition: attachment; filename=\"articulos.csv\"");
+      header("Content-Disposition: attachment; filename=\"$filename.csv\"");
       echo "referencia;codfamilia;codfabricante;descripcion;pvp;iva;codbarras;stock;coste\n";
       
       $offset2 = 0;
@@ -625,6 +636,16 @@ class ventas_articulos extends fs_controller
          
          $data2 = $this->db->select_limit("SELECT *".$sql." ORDER BY ".$order, 1000, $offset2);
       }
+   }
+
+   private function get_filename_articulos(){
+      $hoy =  getdate();
+      $filedate = '_'.$hoy['year']
+                  .'-'.$hoy['mon']
+                  .'-'.$hoy['mday']
+                  .'_'.$hoy['weekday'];
+      $filename = 'articulos'.$filedate;
+      return $filename;
    }
    
    public function paginas()
