@@ -95,7 +95,7 @@ class factura_detallada extends fs_controller {
    public function generar_pdf($archivomail = FALSE, $archivodownload = FALSE) {
       ///// INICIO - Factura Detallada
       /// Creamos el PDF y escribimos sus metadatos
-      $pdf_doc = new PDF_MC_Table('P', 'mm', 'A4');
+      $pdf_doc = new PDF_MC_Table('L', 'mm', 'A4');
       define('EEURO', chr(128));
       $lineas = $this->factura->get_lineas();
       if($this->impresion['print_dto'])
@@ -142,19 +142,19 @@ class factura_detallada extends fs_controller {
       $pdf_doc->fde_provincia = $this->empresa->provincia;
       $pdf_doc->fde_telefono = 'Teléfono: ' . $this->empresa->telefono;
       $pdf_doc->fde_fax = 'Fax: ' . $this->empresa->fax;
-      $pdf_doc->fde_email = $this->empresa->email;
-      $pdf_doc->fde_web = $this->empresa->web;
-      $pdf_doc->fde_piefactura = $this->empresa->pie_factura;
+      //$pdf_doc->fde_email = $this->empresa->email;
+      //$pdf_doc->fde_web = $this->empresa->web;
+      //$pdf_doc->fde_piefactura = $this->empresa->pie_factura;
 
       /// Insertamos el Logo y Marca de Agua
       if( file_exists(FS_MYDOCS.'images/logo.png') OR file_exists(FS_MYDOCS.'images/logo.jpg') )
       {
          $pdf_doc->fdf_verlogotipo = '1'; // 1/0 --> Mostrar Logotipo
-         $pdf_doc->fdf_Xlogotipo = '15'; // Valor X para Logotipo
-         $pdf_doc->fdf_Ylogotipo = '35'; // Valor Y para Logotipo
+         $pdf_doc->fdf_Xlogotipo = '5'; // Valor X para Logotipo
+         $pdf_doc->fdf_Ylogotipo = '5'; // Valor Y para Logotipo
          $pdf_doc->fdf_vermarcaagua = '1'; // 1/0 --> Mostrar Marca de Agua
          $pdf_doc->fdf_Xmarcaagua = '25'; // Valor X para Marca de Agua
-         $pdf_doc->fdf_Ymarcaagua = '110'; // Valor Y para Marca de Agua
+         $pdf_doc->fdf_Ymarcaagua = '70'; // Valor Y para Marca de Agua
       }
       else
       {
@@ -209,17 +209,18 @@ class factura_detallada extends fs_controller {
       }
       
       // Cabecera Titulos Columnas
+      $nw = 5;
       if($this->impresion['print_dto'])
       {
         $pdf_doc->Setdatoscab(array('ALB', 'DESCRIPCION', 'CANT', 'PRECIO', 'DTO', FS_IVA, 'IMPORTE'));
-        $pdf_doc->SetWidths(array(16, 102, 10, 20, 10, 10, 22));
+        $pdf_doc->SetWidths(array(16, 102-($nw*2), 10, 20+$nw, 10, 10, 22+$nw));
         $pdf_doc->SetAligns(array('C', 'L', 'R', 'R', 'R', 'R', 'R'));
         $pdf_doc->SetColors(array('6|47|109', '6|47|109', '6|47|109', '6|47|109', '6|47|109', '6|47|109', '6|47|109'));
       }
       else
       {
         $pdf_doc->Setdatoscab(array('ALB', 'DESCRIPCION', 'CANT', 'PRECIO', FS_IVA, 'IMPORTE'));
-        $pdf_doc->SetWidths(array(16, 107, 10, 20, 15, 22));
+        $pdf_doc->SetWidths(array(16, 107-($nw*2), 10, 20+$nw, 15, 22+$nw));
         $pdf_doc->SetAligns(array('C', 'L', 'R', 'R','R', 'R'));
         $pdf_doc->SetColors(array('6|47|109', '6|47|109', '6|47|109', '6|47|109', '6|47|109', '6|47|109'));
       }
@@ -263,7 +264,7 @@ class factura_detallada extends fs_controller {
       $pdf_doc->AddPage();
 
       // Lineas de la Factura
-      //$lineas = $this->factura->get_lineas();
+      $lineas = $this->factura->get_lineas();
 
       if ($lineas) {
          $neto = 0;

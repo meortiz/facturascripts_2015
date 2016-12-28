@@ -84,6 +84,10 @@ class PDF_MC_Table extends FPDF {
    //Cabecera de pagina
    function Header() {
       // Datos de la empresa
+      $direccion = '';
+      $email = '';
+      $web = '';
+
       $direccion = $this->fde_FS_CIFNIF . ": " . utf8_decode($this->fde_cifnif) . "\n" . $this->fde_direccion;
       if ($this->fde_codpostal && $this->fde_ciudad) {
          $direccion .= "\n" . $this->fde_codpostal . ' - ' . $this->fde_ciudad;
@@ -104,18 +108,24 @@ class PDF_MC_Table extends FPDF {
       if ($this->fde_fax) {
          $direccion .= "\n" . $this->fde_fax;
       }
-      $this->addSociete(utf8_decode($this->fde_nombre), utf8_decode($direccion), utf8_decode($this->fde_email), utf8_decode($this->fde_web));
+      if (isset($this->fde_email)) {
+         $email = "\n" . $this->fde_email;
+      }
+      if (isset($this->fde_web)) {
+         $web = "\n" . $this->fde_web;
+      }
+      $this->addSociete(utf8_decode($this->fde_nombre), utf8_decode($direccion), utf8_decode($email), utf8_decode($web));
 
       //Logotipo
       if($this->fdf_verlogotipo == '1')
       {
          if( file_exists(FS_MYDOCS.'images/logo.png') )
          {
-            $this->Image(FS_MYDOCS.'images/logo.png', $this->fdf_Xlogotipo, $this->fdf_Ylogotipo, 50);
+            $this->Image(FS_MYDOCS.'images/logo.png', $this->fdf_Xlogotipo, $this->fdf_Ylogotipo, 40);
          }
          else if( file_exists(FS_MYDOCS.'images/logo.jpg') )
          {
-            $this->Image(FS_MYDOCS.'images/logo.jpg', $this->fdf_Xlogotipo, $this->fdf_Ylogotipo, 50);
+            $this->Image(FS_MYDOCS.'images/logo.jpg', $this->fdf_Xlogotipo, $this->fdf_Ylogotipo, 40);
          }
 
          $this->Ln(0);
@@ -174,21 +184,28 @@ class PDF_MC_Table extends FPDF {
       // Forma de Pago de la Factura
       $this->addPago($this->fdf_epago);
 
-      // Divisa de la Factura
-      //$this->addDivisa(utf8_decode($this->fdf_divisa));
-      // Pais de la Factura
-      //$this->addPais(utf8_decode($this->fdf_pais));
-      // Pie de la Factura
-      //$this->SetFont('Arial','',5);
-      //$this->RotatedText(6, 210, utf8_decode($this->fde_piefactura), 90);
-      $this->SetFont('Arial', '', 7);
-      $this->SetY(-8);
-      $this->SetLineWidth(0.1);
-      $this->SetTextColor(0);
-      $this->Cell(0, 4, utf8_decode($this->fde_piefactura), 0, 0, "C");
+      /* Divisa de la Factura
+       $this->addDivisa(utf8_decode($this->fdf_divisa));
+      */
+      /* Pais de la Factura
+       $this->addPais(utf8_decode($this->fdf_pais));
+      */
+      /* Pie de la Factura
+       $this->SetFont('Arial','',5);
+       $this->RotatedText(6, 210, utf8_decode($this->fde_piefactura), 90);
+      */
+      if (isset($this->fde_piefactura)) {
+         $this->SetFont('Arial', '', 7);
+         $this->SetY(-8);
+         $this->SetLineWidth(0.1);
+         $this->SetTextColor(0);
+         $this->Cell(0, 4, utf8_decode($this->fde_piefactura), 0, 0, "C");
+       }
+     
 
       // Cabecera Titulos Columnas
-      $this->SetXY(10, 95);
+      $ny = 30;
+      $this->SetXY(10, 95 - $ny);
       $this->SetFont("Arial", "B", 9);
       for ($i = 0; $i < count($this->datoscab); $i++) {
          $this->Cell($this->widths[$i], 5, $this->datoscab[$i], 1, 0, 'C', 1);
@@ -202,8 +219,9 @@ class PDF_MC_Table extends FPDF {
 
       $this->SetDrawColor(0, 0, 0);
       $this->SetTextColor(0);
+      $nh = 100;
       for ($i = 0; $i < count($this->datoscab); $i++) {
-         $this->RoundedRect($aquiX, $aquiY, $this->widths[$i], 155, 1, 'D');
+         $this->RoundedRect($aquiX, $aquiY, $this->widths[$i], $nh, 1, 'D');
          $aquiX += $this->widths[$i];
       }
    }
@@ -275,11 +293,11 @@ class PDF_MC_Table extends FPDF {
          $nb = max($nb, $this->NbLines($this->widths[$i], $data[$i]));
       }
 
-      if (($this->lineaactual + $nb) > 31) { // Mas de una Pagina
-         $nbp = intval(($this->lineaactual + $nb) / 31);
-         $this->lineaactual = ($this->lineaactual + $nb) - ($nbp * 31);
+      if (($this->lineaactual + $nb) > 20) { // Mas de una Pagina
+         $nbp = intval(($this->lineaactual + $nb) / 20);
+         $this->lineaactual = ($this->lineaactual + $nb) - ($nbp * 20);
       } else {
-         if (($this->lineaactual + $nb) == 31) { // Pagina completa
+         if (($this->lineaactual + $nb) == 20) { // Pagina completa
             $this->AddPage($this->CurOrientation);
             $this->lineaactual = 1;
          } else {
@@ -289,7 +307,8 @@ class PDF_MC_Table extends FPDF {
 
       $h = 5 * $this->lineaactual;
       $this->Ln($h);
-      $this->SetY(100 + $h); // Y=100 en base a la altura de la cabecera
+      $ny = 30;
+      $this->SetY((100 - $ny) + $h); // Y=100 en base a la altura de la cabecera
       // Dibujamos una Linea Gris para separar los Articulos
       $aquiX = $this->GetX() + 0.155;
       $aquiY = $this->GetY();
@@ -511,7 +530,8 @@ class PDF_MC_Table extends FPDF {
 
    // Empresa
    function addSociete($nom, $adresse, $email, $web) {
-      $x1 = 10;
+      $large_logo = 50;
+      $x1 = 10 + $large_logo;
       $y1 = 8;
       $this->SetXY($x1, $y1);
       $this->SetFont('Arial', 'B', 12);
@@ -630,18 +650,20 @@ class PDF_MC_Table extends FPDF {
    }
 
    // Forma de Pago
-   function addPago($mode) {
-   	  $numlineas = count($mode);
-	  // default
-      $r1 = 110;
+   function addPago($mode){
+   	$numlineas = count($mode);
+	   // default
+      $nr = -5;
+      $ny = -57;
+      $r1 = 110 + $nr;
       $r2 = $r1 + 90;
-      $y1 = 70;
+      $y1 = 70 + $ny;
       $y2 = $y1 + 23;
       if ($numlineas < 3)
       {
-	      $r1 = 150;
+	      $r1 = 150 + $nr;
 	      $r2 = $r1 + 50;
-	      $y1 = 75;
+	      $y1 = 75 + $ny;
 	      $y2 = $y1 + 15;
       }
       $mid = $y1 + (($y2 - $y1) / 2);
